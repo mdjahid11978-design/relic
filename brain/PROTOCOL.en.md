@@ -109,6 +109,18 @@ Each agent's own memory = private + imported memories from Relic (tagged [fromRe
 ## 2. Boot Sequence (Every Session)
 
 ```
+Step 0: Version Check (once per session)
+  → Read brain/.relic-version to get local version
+  → Fetch https://raw.githubusercontent.com/LucioLiu/relic/main/brain/.relic-version to get latest version
+  → If network is unavailable, silently skip — do not bother the user
+  → Version matches? Silently continue to Step 1
+  → Version differs? Ask the user:
+    "Relic update available (current vX.X.X → latest vY.Y.Y). Update now?
+     This only replaces protocol and template files — your SOUL.md, USER.md, MEMORY.md will NOT be touched."
+    → User agrees: run cd ~/relic && git pull or bash update.sh
+    → User declines: remember this refusal, do not ask again this session
+  ⚠️ NEVER force updates. Updates require explicit user confirmation.
+
 Step 1: Sync Check (Most Important!)
   → Check SESSIONS/ for your last conversation log
   → Skip if no conversation files exist in SESSIONS/ (first use)

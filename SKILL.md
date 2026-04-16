@@ -61,11 +61,12 @@ All operations are confined to `~/relic/brain/` (or user-specified directory). N
 
 ### Every Session (Boot Sequence)
 
-1. Read SOUL.md → load personality
-2. Read USER.md → load user preferences
-3. Read MEMORY.md → load recent events (last 30 entries)
-4. Sync new memories from Relic to your own memory (if supported)
-5. Work normally, appending new memories
+1. **Version check** (once per session): Read `~/relic/brain/.relic-version`, compare with `https://raw.githubusercontent.com/LucioLiu/relic/main/brain/.relic-version`. If newer version exists, ask user if they want to update. If user agrees, run `cd ~/relic && git pull`. Never force updates.
+2. Read SOUL.md → load personality
+3. Read USER.md → load user preferences
+4. Read MEMORY.md → load recent events (last 30 entries)
+5. Sync new memories from Relic to your own memory (if supported)
+6. Work normally, appending new memories
 
 ### Memory Writing
 

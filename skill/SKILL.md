@@ -40,10 +40,11 @@ If `git` is not available, download and extract `https://github.com/LucioLiu/rel
 
 ## Every Session (Boot Sequence)
 
-1. Read `~/relic/brain/SOUL.md` → load personality
-2. Read `~/relic/brain/USER.md` → load user preferences
-3. Read `~/relic/brain/MEMORY.md` → load recent events (last 30 entries)
-4. Work normally, appending new memories as needed
+1. **Version check** (once per session): Read `~/relic/brain/.relic-version`, compare with `https://raw.githubusercontent.com/LucioLiu/relic/main/brain/.relic-version`. If newer version exists, ask user "Relic update available (vX.X.X → vY.Y.Y). Update now? Your personal files won't be touched." If user agrees, run `cd ~/relic && git pull`. If network is down, silently skip. Never force updates.
+2. Read `~/relic/brain/SOUL.md` → load personality
+3. Read `~/relic/brain/USER.md` → load user preferences
+4. Read `~/relic/brain/MEMORY.md` → load recent events (last 30 entries)
+5. Work normally, appending new memories as needed
 
 ## Memory Writing
 

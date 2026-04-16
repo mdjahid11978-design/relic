@@ -117,6 +117,18 @@ Relic MEMORY.md = 所有义体的记忆交汇点（只加不减）
 ## 二、启动流程 / Boot Sequence（每次会话必须执行）
 
 ```
+步骤0：版本检查 / Version Check（每次对话只执行一次）
+  → 读取 brain/.relic-version 获取本地版本号
+  → 访问 https://raw.githubusercontent.com/LucioLiu/relic/main/brain/.relic-version 获取最新版本号
+  → 如果网络不通，静默跳过，不打扰用户
+  → 版本一致？静默继续，执行步骤1
+  → 版本不一致？询问用户：
+    "发现 Relic 新版本（当前 vX.X.X → 最新 vY.Y.Y）。是否更新？
+     更新只会替换协议和模板文件，你的 SOUL.md、USER.md、MEMORY.md 不会被改动。"
+    → 用户同意：执行 cd ~/relic && git pull 或 bash update.sh
+    → 用户拒绝：记住本次拒绝，本次对话不再询问
+  ⚠️ 绝不强制更新。更新必须经过用户确认。
+
 步骤1：检查同步 / Sync Check（最重要！）
   → 查看 SESSIONS/ 目录，对比本义体的上次对话记录
   → 如果 SESSIONS/ 中不存在任何对话文件（首次使用），跳过此步骤
