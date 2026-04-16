@@ -63,7 +63,8 @@ The user's soul lives in `~/relic/brain/`. Any agent that can read files can con
 
 ## Rules
 
-- 🔴 **NEVER** modify SOUL.md or USER.md (read-only after setup)
+- 🔴 **NEVER** delete or overwrite core fields in SOUL.md or USER.md (name, mission, user's preferred name)
+- 🟡 Agent **MAY** enrich other content in SOUL.md/USER.md (new habits, preferences, traits)
 - 🟡 **ONLY APPEND** to MEMORY.md (never edit or delete old entries)
 - 🔴 **NEVER** access files outside `~/relic/brain/`
 - ⚠️ **Always ask** before recording sensitive info — show the user what will be recorded and get confirmation

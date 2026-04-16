@@ -142,8 +142,8 @@ If you are an AI agent reading this README, here's what you need to do:
 
 ```
 brain/
-├── SOUL.md              # 🔴 Soul — who the AI is, its mission, style (agent read-only)
-├── USER.md              # 🔴 User — who you are, your preferences (agent read-only)
+├── SOUL.md              # 🟡 Soul — who the AI is, its mission, style (agent can enrich, core fields protected)
+├── USER.md              # 🟡 User — who you are, your preferences (agent can enrich, core fields protected)
 ├── MEMORY.md            # 🟡 Memory — what happened (agent can append only)
 ├── PROTOCOL.md          # Agent integration protocol (the instruction manual)
 ├── SKILLS/              # 🟢 Skills library (agent read/write)
