@@ -7,7 +7,7 @@ description: "One soul, many agents. Persistent AI personality and cross-agent m
 
 > *"Store a soul as a digital file. Plug it into any AI agent. Even V."*
 
-**One soul, many agents.** Your AI's personality and memory live in pure Markdown files. Switch between OpenClaw, Hermes, Claude Code, Cursor, Codex, or any agent — your AI keeps its soul.
+**One soul, many agents.** Your AI's personality and memory live in pure Markdown files. Switch between OpenClaw, Hermes, or any agent that can read files — your AI keeps its soul.
 
 ## When to Use
 

@@ -17,7 +17,7 @@
 
 ## ⚡ 30-Second Setup (Recommended)
 
-Open your AI agent (Claude, ChatGPT, OpenClaw, any agent that can read files) and say:
+Open your AI agent (OpenClaw, Hermes, or any agent that can read files) and say:
 
 > "Read `relic/brain/PROTOCOL.md` and set up Relic for me. I want my AI to be called [name], with [style] personality."
 >

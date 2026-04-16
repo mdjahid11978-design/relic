@@ -17,7 +17,7 @@
 
 ## ⚡ 30 秒设置（推荐）
 
-打开你的 AI Agent（Claude、ChatGPT、OpenClaw，任何能读文件的 Agent），说：
+打开你的 AI Agent（OpenClaw、Hermes，任何能读文件的 Agent），说：
 
 > "阅读 `relic/brain/PROTOCOL.md` 帮我设置 Relic。我想让 AI 叫 [名字]，风格是 [描述]。"
 >
