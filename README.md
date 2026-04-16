@@ -9,7 +9,7 @@
 ╚═══════════════════════════════════════════════╝
 ```
 
-**Give your AI a persistent personality and memory. Switch agents. Keep the soul.**
+**Relic gives your AI a persistent soul. Using Relic as a bridge, the same soul can control multiple agents (bodies) while keeping memories in sync — personality, memories, and skills all stored in pure Markdown files. Zero code, zero dependencies, human-readable.**
 
 <!-- 🤖 AI Agent reading this? Read `brain/PROTOCOL.md` for full integration instructions. -->
 
