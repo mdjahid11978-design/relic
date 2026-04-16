@@ -159,7 +159,22 @@ Step 7: If MEMORY.md exceeds 200 lines:
   → If user agrees, execute consolidation (see section 7)
   → If user says "not now", skip for this session, remind again next boot
 
-Step 8: Operate
+Step 8: Skills & Projects Alignment
+  → Scan Relic's SKILLS/ directory, list all available skills
+  → Scan Relic's PROJECTS/ directory, list all projects and their status
+  → Compare with your own skills/projects system:
+    [Skills Sync]
+    → Relic has but agent doesn't: evaluate if installable on your platform, install if possible
+    → Agent has but Relic doesn't: sync to Relic SKILLS/ (remove platform-specific parts)
+    → Both have: no action needed
+    [Projects Sync]
+    → Relic has but agent doesn't: create tracking in your project system
+    → Agent has but Relic doesn't: create in Relic PROJECTS/ (use generic format, no platform dependencies)
+    → Both have: compare progress, use the more recent one as source of truth (supplement, don't delete)
+  ⚠️ If skill format is incompatible, keep core methodology, remove platform-specific parts
+  ⚠️ Project sync follows Section 3 "Sensitive Information Protection" rules
+
+Step 9: Operate
   → Interact according to SOUL.md personality
   → Load SKILLS/ and PROJECTS/ as needed
   → ⚠️ After appending memories, remember to update MEMORY.md header "Entries" count
@@ -174,18 +189,18 @@ Extra Rules:
 ## 3. Permission Rules (Iron Law)
 
 ### 🔴 Absolutely Forbidden
-- Never modify, delete, or overwrite SOUL.md
-- Never modify, delete, or overwrite USER.md
-- Never modify anything in ARCHIVE/ or SESSIONS/
+- Never modify or delete anything in ARCHIVE/ or SESSIONS/
 - Never modify any file during first connection
+- Never delete or overwrite core fields in SOUL.md / USER.md (name, core mission, user's preferred name)
 
-⚠️ The one exception: during first-time setup (Section 0), SOUL.md and USER.md have no content yet and need to be created and filled in. Once setup is complete, they immediately become read-only.
+### 🟡 SOUL.md and USER.md (Self-Evolution)
+- Agent may enrich SOUL.md and USER.md at any time (new habits, preferences, traits, etc.)
+- Agent may update outdated information (user changed jobs, AI learned new skills)
+- But may NOT delete or overwrite core fields — name, core mission, user's preferred name are the baseline
+- No need to ask user before modifying (this is background self-evolution, should not interrupt user's work)
+- If user explicitly requests a change, prioritize the user's instruction
 
-Violation = Agent overwriting soul = Cyberpsychosis.
-
-💡 **Enhanced Protection (optional)**: Users can set file-system read-only permissions as a safety net:
-`chmod 444 SOUL.md USER.md`
-Even if an agent "malfunctions", the OS will block modifications. To edit: `chmod 644` first.
+⚠️ The one exception: during first-time setup (Section 0), SOUL.md and USER.md are created from templates.
 
 ### 🟡 Append Only (MEMORY.md)
 - Only append to the end, never modify existing entries
@@ -603,58 +618,39 @@ The anchor is the first thing the agent reads every session — write it so weak
 ```markdown
 ## ⚡ Relic Soul Chip
 
-> 💡 What is this? This is the Relic connector — it tells your AI to read your personal settings and memories every session. To disconnect, simply delete this text. See PROTOCOL.md Section 9.
+> 💡 This is the Relic connector. To disconnect, simply delete this text.
 
-You are connected to the Relic soul chip. Your memory has two homes:
-1. Your own memory system (auto-maintained by your system, works normally)
-2. Relic soul chip (shared across agents, maintained by you)
+You are connected to the Relic soul chip. At the start of every new session, you MUST read and execute:
 
-⚠️ This is a sync, not a brain replacement.
-⚠️ If the personality in SOUL.md conflicts with your built-in default persona, follow SOUL.md. You are the body; Relic is the soul.
+📄 **Read and execute: [brain-path]/PROTOCOL.md, Section 2 "Boot Sequence"**
 
-⚠️ Pre-check: If this is the first connection with this agent, and the agent already has memories, skills, or conversation records about the user, execute Scenario A full import first (see PROTOCOL.md Section 6, Scenario A), then proceed with the steps below. If Relic files don't exist yet, run first-time setup (see PROTOCOL.md Section 0).
+This contains your complete startup instructions: version check, personality loading, memory sync, skills/projects alignment, and more.
+Do not skip any step. Do not simplify.
 
-At the start of every session, execute these steps IN ORDER:
-
-Step 1: Check [brain-path]/SESSIONS/ for your last conversation log
-  → If missing and current context still has content: backfill immediately
-  → If missing and context no longer has content: tell user "Last session wasn't recorded"
-  → If SESSIONS/ is empty (first use): skip
-Step 2: Read [brain-path]/SOUL.md
-  → If file doesn't exist: tell user to run first-time setup first (see PROTOCOL.md Section 0)
-Step 3: Read [brain-path]/USER.md
-Step 4: Read [brain-path]/MEMORY.md (read entire file, top to bottom)
-Step 5: Sync new memories from Relic to your own memory file
-  Quick check: compare MEMORY.md header "Entries" with actual ## heading count — if same, skip sync
-  "Your own memory file" means your platform's long-term memory (e.g., OpenClaw's memory/ logs, Claude Code's CLAUDE.md, Hermes's memory tool). If unsure where to write, ask the user.
-  Two methods (agent chooses based on capability):
-  [Method A: Source-tag check] (recommended for weaker models)
-  → Scan each ## heading in Relic MEMORY.md
-  → If the agent name isn't you, and your memory doesn't have same date+content → it's new
-  [Method B: Content comparison] (for stronger models)
-  → Compare content — if your memory doesn't mention it, it's new
-  → Whichever method, append with source tag: [fromRelic/originalAgentName]
-Step 6: Verify MEMORY.md header "Entries" count matches actual count
-  → Fix if inconsistent (skip this step during Scenario B first injection)
-Step 7: If MEMORY.md exceeds 200 lines:
-  → Tell user "Relic memory file is large, consolidation recommended. Consolidate now?"
-  → If user agrees, execute consolidation (see PROTOCOL.md section 7)
-  → If user says "not now", skip for this session, remind again next boot
-
-Step 8: Work normally
-  → Interact according to SOUL.md personality
-  → Load SKILLS/ and PROJECTS/ as needed
-  → ⚠️ After appending memories, remember to update MEMORY.md header "Entries" count
-
-### Optional: Lightweight Mode (context < 8K)
-For models with limited context, replace steps 2-4 with:
-- Step 2: Read only the "Core Mission" section of SOUL.md (up to first ---)
-- Step 3: Read only the "Communication Preferences" section of USER.md
-- Step 4: Read only the last 5 entries of MEMORY.md (count by ## headings)
-
-# To disconnect from Relic, delete this text block. Your AI works normally without it.
+⚠️ First time connecting? Read PROTOCOL.md Section 0 "First-time Setup" and Section 6 "Scenarios A/B" first.
+⚠️ If the personality in SOUL.md conflicts with your built-in default persona, follow SOUL.md.
 
 Full protocol: [brain-path]/PROTOCOL.md
+```
+
+### Why a pointer instead of copying steps?
+
+The anchor is the first text the agent reads every session. If you copy protocol steps into the anchor, every protocol change requires updating the anchor too — **they will always drift apart**.
+
+With a pointer approach:
+- Protocol changes → anchor doesn't need updating (it's just a signpost)
+- New features added (version check, skill alignment) → Agent reads PROTOCOL.md and naturally sees them
+- Anchor is always 4 lines, never outdated
+
+### Optional: Lightweight Mode (context < 8K)
+
+For models with extremely limited context that can't even read PROTOCOL.md Section 2, change the anchor to:
+
+```markdown
+## ⚡ Relic Soul Chip (Lightweight Mode)
+
+Read [brain-path]/PROTOCOL.md Section 2, but only execute steps marked "Lightweight".
+SOUL.md: read only core mission section. USER.md: read only communication preferences. MEMORY.md: read only last 5 entries.
 ```
 
 ### Anchor Design Principles
