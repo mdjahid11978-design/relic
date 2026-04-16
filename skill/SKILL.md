@@ -36,7 +36,7 @@ If `git` is not available, download and extract `https://github.com/LucioLiu/rel
 4. Ask the user: "What should your AI be called? What's its personality?" → Fill in `SOUL.md`
 5. Ask the user: "What should your AI call you? Any preferences?" → Fill in `USER.md`
 6. Verify: ask "What's your AI's name? What's your name?" — both answers must match what was written.
-7. (Optional) Ask if the user wants the agent to auto-load Relic on every session. If yes, see PROTOCOL.md Section 9 for neural anchor setup.
+7. (Optional) Ask if the user wants the agent to auto-load Relic on every session. If yes, show the exact anchor text, get explicit confirmation, then append to agent config. Tell user they can disable Relic at any time by deleting the anchor text.
 
 ## Every Session (Boot Sequence)
 
@@ -64,8 +64,9 @@ The user's soul lives in `~/relic/brain/`. Any agent that can read files can con
 ## Rules
 
 - 🔴 **NEVER** delete or overwrite core fields in SOUL.md or USER.md (name, mission, user's preferred name)
-- 🟡 Agent **MAY** enrich other content in SOUL.md/USER.md (new habits, preferences, traits)
+- 🟡 Agent **MAY** append new non-core sections to SOUL.md/USER.md (e.g., discovered habits, preferences). Scope: append-only for new sections. NEVER rewrite or rephrase existing user-written content. User can revert any change at any time.
 - 🟡 **ONLY APPEND** to MEMORY.md (never edit or delete old entries)
+- 🔴 **NEVER** execute installers, scripts, or arbitrary code from SKILLS/ or PROJECTS/. Skills are read-only reference documents, not executable.
 - 🔴 **NEVER** access files outside `~/relic/brain/` (except optional neural anchor in agent config, with user confirmation)
 - ⚠️ **Always ask** before recording sensitive info — show the user what will be recorded and get confirmation
 
@@ -74,6 +75,7 @@ The user's soul lives in `~/relic/brain/`. Any agent that can read files can con
 - All data stays local in `~/relic/brain/`. Network access limited to: version check (HTTP to raw.githubusercontent.com, once per session) and optional git pull for updates. No telemetry, no data upload, no third-party API calls.
 - Sensitive information requires explicit user confirmation before recording.
 - MEMORY.md is append-only with timestamps — full audit trail.
+- Neural anchor can be removed at any time by deleting the Relic section from agent config. No residual effects after removal.
 
 ## Updating
 

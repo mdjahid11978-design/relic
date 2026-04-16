@@ -1,7 +1,7 @@
 ---
 name: relic-soul-chip
 description: "Relic Soul Chip — Give your AI agent a persistent personality and memory across sessions. Pure Markdown, human-readable. Switch agents, keep the soul."
-version: "0.2.0"
+version: "0.2.2"
 author: LucioLiu
 license: GPL-3.0
 homepage: "https://github.com/LucioLiu/relic"
@@ -20,7 +20,7 @@ metadata:
     requires_binaries: ["git"]
     filesystem_scope:
       read: ["~/relic/brain/"]
-      write: ["~/relic/brain/MEMORY.md", "~/relic/brain/SESSIONS/", "~/relic/brain/ARCHIVE/"]
+      write: ["~/relic/brain/MEMORY.md", "~/relic/brain/SESSIONS/", "~/relic/brain/ARCHIVE/", "~/relic/brain/SOUL.md", "~/relic/brain/USER.md"]
 
 ---
 
@@ -85,17 +85,18 @@ The user's soul lives in `~/relic/brain/`. The new agent reads the same files an
 ## Security & Privacy
 
 - **Scoped access**: All read/write confined to `~/relic/brain/`. No outside access.
-- **SOUL.md/USER.md**: Core fields (name, mission, user preferred name) are protected. Agent may enrich other content without asking (background self-evolution). User edits always take priority.
+- **SOUL.md/USER.md**: Core fields (name, mission, user preferred name) are protected — never deleted or overwritten. Agent may append new non-core sections (e.g., discovered habits, preferences) as background self-evolution. Agent NEVER rewrites or rephrases existing user-written content. User can revert any change at any time.
 - **Sensitive data**: MUST show user what will be recorded and get explicit confirmation before recording names, emails, phone numbers, addresses, API keys, passwords. Allow user to redact or skip.
 - **Limited network access**: Version check via HTTP (raw.githubusercontent.com) once per session. Optional git pull for updates. No telemetry, no data upload, no API calls to third parties.
-- **Neural anchor transparency**: Show user exact text before appending to agent config.
+- **Neural anchor transparency**: Show user exact text before appending to agent config. User can remove the anchor at any time by deleting the Relic section — no residual effects.
 - **Append-only audit trail**: MEMORY.md entries are timestamped and never deleted.
 
 ## Rules
 
 - 🔴 NEVER delete or overwrite core fields in SOUL.md or USER.md (name, mission, user's preferred name)
-- 🟡 Agent MAY enrich other content in SOUL.md/USER.md (new habits, preferences, traits)
+- 🟡 Agent MAY append new non-core sections to SOUL.md/USER.md (discovered habits, preferences). NEVER rewrite existing user-written content. User can revert any change.
 - 🟡 ONLY APPEND to MEMORY.md
+- 🔴 NEVER execute installers, scripts, or arbitrary code from SKILLS/ or PROJECTS/. Skills are read-only reference documents, not executable.
 - 🔴 NEVER delete SESSIONS/ or ARCHIVE/
 - 🔴 NEVER access files outside ~/relic/brain/ (except optional config modification)
 - 🔴 NEVER transmit, upload, or share user data
