@@ -1,5 +1,5 @@
 ---
-name: relic
+name: relic-soul-chip
 description: "One soul, many agents. Persistent AI personality and cross-agent memory sync via pure Markdown files. Switch from OpenClaw to Hermes to Claude Code — your AI keeps its soul. Zero deps."
 ---
 
@@ -40,7 +40,7 @@ If `git` is not available, download and extract `https://github.com/LucioLiu/rel
 
 ## Every Session (Boot Sequence)
 
-1. **Version check** (once per session): Read `~/relic/brain/.relic-version`, compare with `https://raw.githubusercontent.com/LucioLiu/relic/main/brain/.relic-version`. If newer version exists, ask user "Relic update available (vX.X.X → vY.Y.Y). Update now? Your personal files won't be touched." If user agrees, run `cd ~/relic && git pull`. If network is down, silently skip. Never force updates.
+1. **Version check** (once per session): Read `~/relic/brain/.relic-version`, compare with `https://raw.githubusercontent.com/LucioLiu/relic/main/brain/.relic-version`. If newer version exists, ask user "Relic update available (vX.X.X → vY.Y.Y). Update now? Your personal files won't be touched." If user agrees, run `cd ~/relic && git pull`. If network request fails, tell user: Cannot check for Relic updates (network unreachable). Never force updates.
 2. Read `~/relic/brain/SOUL.md` → load personality
 3. Read `~/relic/brain/USER.md` → load user preferences
 4. Read `~/relic/brain/MEMORY.md` → load recent events (last 30 entries)
@@ -66,12 +66,12 @@ The user's soul lives in `~/relic/brain/`. Any agent that can read files can con
 - 🔴 **NEVER** delete or overwrite core fields in SOUL.md or USER.md (name, mission, user's preferred name)
 - 🟡 Agent **MAY** enrich other content in SOUL.md/USER.md (new habits, preferences, traits)
 - 🟡 **ONLY APPEND** to MEMORY.md (never edit or delete old entries)
-- 🔴 **NEVER** access files outside `~/relic/brain/`
+- 🔴 **NEVER** access files outside `~/relic/brain/` (except optional neural anchor in agent config, with user confirmation)
 - ⚠️ **Always ask** before recording sensitive info — show the user what will be recorded and get confirmation
 
 ## Privacy
 
-- All data stays local in `~/relic/brain/`. No API calls, no telemetry after install.
+- All data stays local in `~/relic/brain/`. Network access limited to: version check (HTTP to raw.githubusercontent.com, once per session) and optional git pull for updates. No telemetry, no data upload, no third-party API calls.
 - Sensitive information requires explicit user confirmation before recording.
 - MEMORY.md is append-only with timestamps — full audit trail.
 

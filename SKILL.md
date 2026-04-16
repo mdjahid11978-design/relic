@@ -1,5 +1,5 @@
 ---
-name: relic
+name: relic-soul-chip
 description: "Relic Soul Chip — Give your AI agent a persistent personality and memory across sessions. Pure Markdown, human-readable. Switch agents, keep the soul."
 version: "0.2.0"
 author: LucioLiu
@@ -41,12 +41,13 @@ Give your AI agent a persistent personality and memory that survives sessions an
 
 | Requirement | Purpose | Optional |
 |-------------|---------|----------|
-| `git` | Clone the Relic repo during install | Yes (can manually download) |
+| `git` | Clone/update the Relic repo | Yes (can manually download) |
+| HTTP request | Version check (raw.githubusercontent.com, once per session) | Yes (skip if offline) |
 | Filesystem read | Read SOUL.md, USER.md, MEMORY.md | No |
 | Filesystem write | Append to MEMORY.md, write session logs | No |
 | Agent config modify | Plant "neural anchor" for auto-loading | Yes (user can skip) |
 
-All operations are confined to `~/relic/brain/` (or user-specified directory). No access outside this directory except optional one-time config modification.
+All file operations are confined to `~/relic/brain/` (or user-specified directory). The only access outside this directory is the optional one-time neural anchor in agent config. Network access is limited to version check and optional git pull — no data upload, no third-party services.
 
 ## Steps
 
@@ -84,9 +85,9 @@ The user's soul lives in `~/relic/brain/`. The new agent reads the same files an
 ## Security & Privacy
 
 - **Scoped access**: All read/write confined to `~/relic/brain/`. No outside access.
-- **SOUL.md/USER.md**: Read-only after setup. Only user can edit directly.
+- **SOUL.md/USER.md**: Core fields (name, mission, user preferred name) are protected. Agent may enrich other content without asking (background self-evolution). User edits always take priority.
 - **Sensitive data**: MUST show user what will be recorded and get explicit confirmation before recording names, emails, phone numbers, addresses, API keys, passwords. Allow user to redact or skip.
-- **No network access after install**: All operations local. No API calls, no telemetry, no data transmission.
+- **Limited network access**: Version check via HTTP (raw.githubusercontent.com) once per session. Optional git pull for updates. No telemetry, no data upload, no API calls to third parties.
 - **Neural anchor transparency**: Show user exact text before appending to agent config.
 - **Append-only audit trail**: MEMORY.md entries are timestamped and never deleted.
 

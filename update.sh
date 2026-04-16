@@ -41,10 +41,8 @@ cp "$TMPDIR/relic/SKILL.md" SKILL.md 2>/dev/null || true
 
 # Update docs
 mkdir -p docs 2>/dev/null || true
-cp "$TMPDIR/relic/docs/PLAN.md" docs/PLAN.md
-cp "$TMPDIR/relic/docs/DECISIONS.md" docs/DECISIONS.md
-cp "$TMPDIR/relic/docs/TROUBLESHOOTING.md" docs/TROUBLESHOOTING.md
-cp "$TMPDIR/relic/docs/DISCUSSION.md" docs/DISCUSSION.md
+cp "$TMPDIR/relic/docs/PLAN.md" docs/PLAN.md 2>/dev/null || true
+cp "$TMPDIR/relic/docs/TROUBLESHOOTING.md" docs/TROUBLESHOOTING.md 2>/dev/null || true
 
 # Update READMEs
 cp "$TMPDIR/relic/README.md" README.md
