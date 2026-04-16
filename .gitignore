@@ -1,0 +1,24 @@
+# OS generated
+.DS_Store
+Thumbs.db
+*:Zone.Identifier*
+
+# Editor
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Sisyphus (OpenCode orchestration)
+.sisyphus/
+
+# Relic user data (DO NOT commit personal data)
+# These are tracked in brain/.gitignore as well
+brain/SOUL.md
+brain/USER.md
+brain/MEMORY.md
+brain/SESSIONS/2026-*/
+brain/ARCHIVE/*.raw.md
+brain/INBOX/*
+!brain/INBOX/README.md
