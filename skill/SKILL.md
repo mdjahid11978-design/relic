@@ -7,14 +7,19 @@ description: "One soul, many agents. Persistent AI personality and cross-agent m
 
 > *"Store a soul as a digital file. Plug it into any AI agent. Even V."*
 
-**One soul, many agents.** Your AI's personality and memory live in pure Markdown files. Switch between OpenClaw, Hermes, or any agent that can read files — your AI keeps its soul.
+**Your AI forgets you every session.** Your preferences, your personality, your history — gone the moment you close the chat. Every new agent starts from zero.
 
-## When to Use
+**Relic fixes this.** Your AI's personality and memory live in plain Markdown files. Switch between OpenClaw, Claude Code, Hermes, or any agent — your AI keeps its soul.
 
-- User says "set up Relic" or "I want my AI to remember me"
-- User wants to transfer AI personality/memory from one agent to another
-- User is switching agents (e.g., from OpenClaw to Hermes) and wants continuity
-- User mentions persistent personality, AI soul, agent memory, cross-agent sync
+### Why Relic?
+
+- ⚡ **Zero dependencies** — pure Markdown, `cat` works. No installers, no runtimes, no npm packages
+- 🔄 **Cross-agent sync** — one soul, many bodies. Switch agents freely, memories follow automatically
+- 🧠 **Self-evolving** — AI enriches its own personality as it learns about you, without interrupting your work
+- 👁️ **Human-readable** — open any file in a text editor. You own your data, always
+- 🔒 **Privacy-first** — all data stays local. No telemetry, no cloud, no third-party APIs
+
+*Used across OpenClaw, Claude Code, Hermes, OpenCode, Cursor, Aider, and any agent that reads files.*
 
 ## Quick Install
 
