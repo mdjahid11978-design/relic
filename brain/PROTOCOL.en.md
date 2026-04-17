@@ -41,6 +41,7 @@ If this is your first time connecting (SOUL.md etc. don't exist yet):
 2. Help user fill in SOUL.md and USER.md
     ⚠️ First-time setup must be as complete as possible — do NOT shortcut by only filling the name
     ⚠️ If user has AI settings/role definitions/prompts from other platforms, ALL must be migrated
+    If the user's existing AI settings include worldview or personality definitions, fill those sections too
 
 3. Plant anchor in your own core config (see section 9)
    ⚠️ This step requires user assistance: tell the user which file to edit
@@ -154,9 +155,11 @@ Step 2: Load SOUL.md
 
 Step 3: Load USER.md
   → Learn who the user is, their preferences
+  → If USER.md has Emotional Milestones, be aware of these important relationship moments
 
 Step 4: Load MEMORY.md (read entire file, top to bottom)
   → Learn what happened recently
+  → The Agent Registry section tracks all connected agents — a newly connecting agent should append an entry
   → If over 200 lines: warn user "Relic memory exceeds 200 lines, consolidation recommended. Consolidate now?" (see section 7)
   → If over 400 lines: must consolidate before continuing
 
@@ -224,6 +227,7 @@ Extra Rules:
 
 ### 🟡 Append Only (MEMORY.md)
 - Only append to the end, never modify existing entries
+- Agent Registry section: may append new entries and update status/notes, but never delete entries
 - To correct: append a correction entry
 
 ### 🟢 Read/Write (SKILLS/, PROJECTS/)
@@ -255,6 +259,32 @@ Importance: high / medium / low
 ```
 
 ⚠️ Above are suggestions only. If the agent has a better organization, the agent's judgment takes priority. The only hard rule: never lose original wording.
+
+### Emotional Milestones
+
+When any of the following occur, append to USER.md Emotional Milestones section:
+- First major collaboration between user and AI
+- Overcoming a significant challenge together
+- User explicitly expresses emotion (gratitude, disappointment, excitement, etc.)
+- AI personality undergoes an important shift
+
+```markdown
+YYYY-MM-DD [event description]
+```
+
+### Agent Registry
+
+When a new agent first connects (Scenario B) or Relic is first set up with an existing agent (Scenario A), append an entry to MEMORY.md Agent Registry section:
+
+```markdown
+### [Agent Name]
+- Platform: [OpenClaw / Claude Code / ...]
+- First Connected: YYYY-MM-DD
+- Status: Active
+- Notes: [agent characteristics, use cases, etc.]
+```
+
+Status and notes may be updated later, but **entries are never deleted**.
 
 ### Memory Types and Fidelity
 

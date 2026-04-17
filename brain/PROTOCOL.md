@@ -44,8 +44,10 @@ If this is your first time connecting (SOUL.md etc. don't exist yet):
 2. 帮用户填写 SOUL.md 和 USER.md / Help user fill in SOUL.md and USER.md
    ⚠️ 首次设置时必须尽可能完整填写，不能偷懒只填名字
    ⚠️ First-time setup must be as complete as possible — do NOT shortcut by only filling the name
-   如果用户有其他平台的AI设定/角色定义/prompt，必须全部迁移进来
-   If user has AI settings/role definitions/prompts from other platforms, ALL must be migrated
+    如果用户有其他平台的AI设定/角色定义/prompt，必须全部迁移进来
+    If user has AI settings/role definitions/prompts from other platforms, ALL must be migrated
+    如果用户的现有AI设定包含世界观或性格描述，也一并填入对应条目
+    If the user's existing AI settings include worldview or personality definitions, fill those sections too
 
 3. 在你自己的核心配置文件里植入锚点（见第九节）
    ⚠️ 这一步需要用户协助：告诉用户要在哪个文件加什么内容
@@ -164,9 +166,11 @@ Relic MEMORY.md = 所有义体的记忆交汇点（只加不减）
 
 步骤3：读取 USER.md / Load User
   → 了解用户是谁、偏好什么
+  → 如果 USER.md 有情感里程碑，了解这些重要的关系时刻
 
 步骤4：读取 MEMORY.md（从头到尾读完整文件）
   → 了解最近发生了什么
+  → 义体列表区域记录了所有已接入的义体，首次连接的新义体应追加一条
   → 如果超过 200 行：提醒用户建议整理（见第七节）
   → 如果超过 400 行：必须先整理才能继续
 
@@ -236,6 +240,8 @@ Relic MEMORY.md = 所有义体的记忆交汇点（只加不减）
 
 ### 🟡 追加写 / Append Only（MEMORY.md）
 - 只能在末尾追加，不能改旧内容
+- 义体列表区域：可以追加新义体条目、更新已有条目的状态和备注，但不能删除条目
+- Agent Registry section: may append new entries and update status/notes, but never delete entries
 - 如果记忆有误，追加一条更正：
 
 ```markdown
@@ -274,6 +280,32 @@ Relic MEMORY.md = 所有义体的记忆交汇点（只加不减）
 ```
 
 ⚠️ 以上都是建议。如果义体有更好的组织方式，优先义体的判断。唯一底线：原始表述不能丢。
+
+### 情感里程碑写入 / Emotional Milestones
+
+当发生以下情况时，追加到 USER.md 的情感里程碑区域：
+- 用户和 AI 的第一次重要合作
+- 共同克服了重大困难
+- 用户明确表达了情感（感谢、失望、兴奋等）
+- AI 人格发生了重要转变
+
+```markdown
+YYYY-MM-DD [事件描述]
+```
+
+### 义体列表写入 / Agent Registry
+
+当新义体首次接入（场景 B）或首次设置 Relic（场景 A）时，追加一条到 MEMORY.md 的义体列表区域：
+
+```markdown
+### [义体名] / [Agent Name]
+- 平台 / Platform: [OpenClaw / Claude Code / ...]
+- 首次接入 / First Connected: YYYY-MM-DD
+- 状态 / Status: 活跃
+- 备注 / Notes: [义体特点、使用场景等]
+```
+
+后续可以更新状态（如改为"休眠"）和补充备注，但**条目永不删除**。
 
 ### 记忆类型与精度要求 / Memory Types and Fidelity
 
