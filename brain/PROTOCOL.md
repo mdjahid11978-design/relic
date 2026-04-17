@@ -42,8 +42,10 @@ If this is your first time connecting (SOUL.md etc. don't exist yet):
    模板文件（.template.md）保留作为备份，后续可删可留。
 
 2. 帮用户填写 SOUL.md 和 USER.md / Help user fill in SOUL.md and USER.md
-   只需要填写"核心使命"就能开始使用 / Only "Core Mission" is required
-   其他字段可以以后再补 / Other fields can be filled later
+   ⚠️ 首次设置时必须尽可能完整填写，不能偷懒只填名字
+   ⚠️ First-time setup must be as complete as possible — do NOT shortcut by only filling the name
+   如果用户有其他平台的AI设定/角色定义/prompt，必须全部迁移进来
+   If user has AI settings/role definitions/prompts from other platforms, ALL must be migrated
 
 3. 在你自己的核心配置文件里植入锚点（见第九节）
    ⚠️ 这一步需要用户协助：告诉用户要在哪个文件加什么内容

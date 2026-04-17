@@ -7,8 +7,8 @@
   
   ⚡ 使用方法 / How to use:
   1. 复制一份改名为 SOUL.md / Copy and rename to SOUL.md
-  2. 填写必填字段（核心使命、名字）就能开始 / Fill required fields (Core Mission, Name) to start
-  3. 其他条目可选，也可以自己加新条目 / Other sections optional, you can add your own
+  2. 首次设置时尽量填写完整（核心使命和名字必填，其他也尽量填）/ Fill as completely as possible on first setup (Core Mission and Name required, fill others too)
+  3. 可以自己加新条目 / You can add your own sections
   4. HTML 注释可以不删 / HTML comments can be left
 -->
 
