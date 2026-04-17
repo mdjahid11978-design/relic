@@ -58,12 +58,16 @@ Relic lives in `~/relic/brain/`. The user installs it manually before using this
 
 ## Every Session (Boot Sequence)
 
-1. Read `~/relic/brain/SOUL.md` → load personality
-2. Read `~/relic/brain/USER.md` → load user preferences
-3. Read `~/relic/brain/MEMORY.md` → load all entries (organized by topic, not by date). Recent mood entries carry emotional context naturally.
-4. Work normally, appending new memories as needed
-
-> 💡 **Updates**: If the user asks about updates, tell them to visit https://github.com/LucioLiu/relic/releases. Personal files (SOUL.md, USER.md, MEMORY.md, SESSIONS/, ARCHIVE/) are never affected by updates.
+1. **Version check** (once per session): Read `~/relic/brain/.relic-version` to get the current version. Then use your built-in web browsing capability to check `https://github.com/LucioLiu/relic/releases/latest` for the newest release. If a newer version exists, tell the user:
+   > "Relic update available (vX.X.X → vY.Y.Y). Your personal files won't be touched. To update, copy and run:
+   > ```
+   > cd ~/relic && git pull
+   > ```"
+   If you cannot reach the network, silently skip this step. Never execute the update yourself.
+2. Read `~/relic/brain/SOUL.md` → load personality
+3. Read `~/relic/brain/USER.md` → load user preferences
+4. Read `~/relic/brain/MEMORY.md` → load all entries (organized by topic, not by date). Recent mood entries carry emotional context naturally.
+5. Work normally, appending new memories as needed
 
 ## Memory Writing
 
@@ -102,7 +106,7 @@ The user's soul lives in `~/relic/brain/`. Any agent that can read files can con
 
 ## Updating
 
-When a new version of Relic is released, the user updates manually by visiting https://github.com/LucioLiu/relic/releases.
+When a new version is detected (see Boot Sequence step 1), the user updates by running the command shown in the update notification. Alternatively, visit https://github.com/LucioLiu/relic/releases.
 
 This updates protocol and template files only. SOUL.md, USER.md, MEMORY.md, SESSIONS/, and ARCHIVE/ are safe — they are listed in `.gitignore`.
 
