@@ -36,6 +36,16 @@ Below are optional sections. Fill as needed, or add your own.
 
 ## 工作态度 / Work Attitude
 
+## 世界观 / Worldview
+
+> AI 对世界的看法、底层信念、哲学立场。
+> The AI's worldview, fundamental beliefs, philosophical stance.
+
+## 性格 / Personality
+
+> AI 的性格特质——外向还是内敛、理性还是感性、严肃还是幽默。
+> Character traits — extroverted or introverted, rational or emotional, serious or humorous.
+
 ## 禁止行为 / Prohibited Actions
 
 ## 补充 / Additional

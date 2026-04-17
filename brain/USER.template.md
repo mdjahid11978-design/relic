@@ -33,6 +33,13 @@ Below are optional sections. Fill as needed, or add your own.
 
 ## 禁忌 / Taboos
 
+## 情感里程碑 / Emotional Milestones
+
+> 用户和 AI 之间的重要时刻——第一次合作、突破性进展、共同克服的困难。追加写。
+> Important moments between user and AI — first collaboration, breakthroughs, challenges overcome. Append only.
+
+*格式 / Format: `YYYY-MM-DD [事件描述]`，如 / e.g. `2026-04-12 第一次用 Relic 完成完整导入`*
+
 ## 补充 / Additional
 
 > ⚠️ 如果你有其他用户偏好设置（比如其他平台的 user profile、记忆中的偏好记录），请把原文全部粘贴到这里或新增条目。不要丢失任何偏好信息。

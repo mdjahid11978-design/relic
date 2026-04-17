@@ -41,6 +41,20 @@
 *放这里：解决过的问题、排查经验、注意事项*
 *Put here: problems solved, debugging experience, gotchas*
 
+## 义体列表 / Agent Registry
+
+> 已接入的义体清单。每个义体接入时追加一条，后续可补充备注。
+> Registry of connected agents. Append an entry when each agent connects. Notes can be added later.
+
+*格式 / Format:*
+<!-- 
+### [义体名] / [Agent Name]
+- 平台 / Platform: [OpenClaw / Claude Code / ...]
+- 首次接入 / First Connected: YYYY-MM-DD
+- 状态 / Status: 活跃 / 休眠 / 已退役
+- 备注 / Notes: [义体特点、使用场景等，可后续补充]
+-->
+
 ## 自由区域 / Free Zone
 
 *放这里：任何不适合上面的内容。自己加新的 ## 标题也完全可以。*
