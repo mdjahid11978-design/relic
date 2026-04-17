@@ -3,12 +3,17 @@ name: relic-soul-chip
 description: "One soul, many agents. Persistent AI personality and cross-agent memory sync via pure Markdown files. Switch from OpenClaw to Hermes to Claude Code — your AI keeps its soul. Zero deps."
 ---
 
-<!-- 
-  SECURITY NOTICE: This skill is read-only and instruction-only.
-  - No remote downloads, no network requests, no shell command execution.
-  - The agent only reads and writes local Markdown files within ~/relic/brain/.
-  - All installation and updates are performed by the user manually.
-  - No scripts, no installers, no executable code is invoked by this skill.
+<!--
+  SECURITY NOTICE
+  - This skill is instruction-only — no scripts, no installers, no executable code.
+  - Network access: limited to one optional read-only HTTP request per session
+    to check for updates at github.com/LucioLiu/relic/releases. No data is sent
+    or downloaded. If the network is unreachable, this step is silently skipped.
+    All updates are user-initiated — the agent never downloads or executes anything.
+  - Local file access: the agent reads Markdown files in ~/relic/brain/ and may
+    append new entries to MEMORY.md or fill in template files during first-time setup,
+    always with user visibility and confirmation for sensitive content.
+  - No telemetry, no data upload, no third-party API calls, no shell command execution.
 -->
 
 # ⚡ Relic Soul Chip
@@ -89,7 +94,7 @@ The user's soul lives in `~/relic/brain/`. Any agent that can read files can con
 ## Rules
 
 - 🔴 **NEVER** execute shell commands, installers, scripts, or arbitrary code. This skill only reads and writes local Markdown files.
-- 🔴 **NEVER** make network requests. No HTTP fetches, no API calls, no remote version checks.
+- 🔴 **NEVER** download or install anything automatically. Update commands are shown to the user for manual execution only.
 - 🔴 **NEVER** delete or overwrite core fields in SOUL.md or USER.md (name, mission, user's preferred name)
 - 🟡 Agent **MAY** append new non-core sections to SOUL.md/USER.md (e.g., discovered habits, preferences). Scope: append-only for new sections. NEVER rewrite or rephrase existing user-written content. User can revert any change at any time.
 - 🟡 **ONLY APPEND** to MEMORY.md (never edit or delete old entries)
@@ -99,7 +104,7 @@ The user's soul lives in `~/relic/brain/`. Any agent that can read files can con
 
 ## Privacy
 
-- All data stays local in `~/relic/brain/`. This skill makes **zero network requests** — no version checks, no telemetry, no data upload, no third-party API calls.
+- All data stays local in `~/relic/brain/`. Network access is limited to one optional read-only request per session to check for Relic updates (github.com/LucioLiu/relic/releases). No data is sent or downloaded. If network is unreachable, this step is silently skipped with no impact on functionality.
 - Sensitive information requires explicit user confirmation before recording.
 - MEMORY.md is append-only with timestamps — full audit trail.
 - Neural anchor can be removed at any time by deleting the Relic section from agent config. No residual effects after removal.
@@ -138,12 +143,10 @@ Every session starts automatically. Even moods transfer between agents via memor
 
 For transparency, Relic will never:
 - Execute scripts, installers, shell commands, or arbitrary code
-- Make any network requests (no HTTP, no version checks, no downloads)
-- Install software, packages, or platform-specific tools
-- Modify any files outside `~/relic/brain/` without showing the user exact changes first
-- Upload, transmit, or share any user data
+- Download, install, or auto-update any software — update commands are shown to the user to run manually
+- Send or upload any user data to any server
 - Make the neural anchor permanent (user can delete it at any time)
-- Require any external dependencies or runtime environments
+- Require any external dependencies or runtime environments beyond what the agent already has
 
 ## Full Documentation
 
