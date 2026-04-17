@@ -39,8 +39,8 @@ If this is your first time connecting (SOUL.md etc. don't exist yet):
    Template files (.template.md) remain as backups. You can delete them later if desired.
 
 2. Help user fill in SOUL.md and USER.md
-   Only "Core Mission" is required to start
-   Other fields can be filled later
+    ⚠️ First-time setup must be as complete as possible — do NOT shortcut by only filling the name
+    ⚠️ If user has AI settings/role definitions/prompts from other platforms, ALL must be migrated
 
 3. Plant anchor in your own core config (see section 9)
    ⚠️ This step requires user assistance: tell the user which file to edit
