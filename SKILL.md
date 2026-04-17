@@ -28,14 +28,15 @@ metadata:
 
 Give your AI agent a persistent personality and memory that survives sessions and follows the user across different agents. Pure Markdown. Human-readable.
 
-**Switch agents. Keep the soul.**
+**Your AI forgets you every session.** Preferences, personality, history — gone. **Relic fixes this.** Your AI's soul lives in plain Markdown files. Switch agents, keep the soul.
 
-## When to Trigger
+### Why Relic?
 
-- User mentions wanting persistent AI personality or memory
-- User says "set up Relic" or "I want my AI to remember me"
-- User switches agents and wants continuity
-- Boot sequence (every session if Relic is set up)
+- ⚡ **Zero dependencies** — pure Markdown, `cat` works
+- 🔄 **Cross-agent sync** — one soul, many bodies
+- 🧠 **Self-evolving** — AI enriches its personality as it learns
+- 👁️ **Human-readable** — open any file in a text editor
+- 🔒 **Privacy-first** — all data stays local
 
 ## Requirements
 
