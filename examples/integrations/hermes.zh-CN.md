@@ -12,7 +12,7 @@
 ### 第一次设置 / First-time Setup
 
 1. 告诉 Hermes / Tell Hermes:
-   > "读一下 `~/relic/brain/PROTOCOL.md`，把你知道的关于我的一切导入 Relic。"
+   > "读一下 `~/relic/AGENT.zh-CN.md`，把你知道的关于我的一切导入 Relic。"
 
 2. Hermes 会执行场景A（完整导入） / Hermes executes Scenario A (Full Import)
 
@@ -26,8 +26,8 @@ Hermes anchor location depends on your config. Common options:
 - `.hermes` 文件 / `.hermes` file
 - 项目级 `.agents/skills/` 目录
 
-锚点模板见 `brain/PROTOCOL.md` 第九节。
-Anchor template in `brain/PROTOCOL.md` Section 9.
+锚点模板见 `docs/protocol.zh-CN.md` 第九节。
+Anchor template in `docs/protocol.md` Section 9.
 
 ### 日常使用 / Daily Use
 

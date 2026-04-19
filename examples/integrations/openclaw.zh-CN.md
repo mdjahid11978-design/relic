@@ -12,7 +12,7 @@
 ### 第一次设置 / First-time Setup
 
 1. 打开 OpenClaw，告诉它 / Open OpenClaw, tell it:
-   > "读一下 `~/relic/brain/PROTOCOL.md`，把你知道的关于我的一切导入 Relic。"
+   > "读一下 `~/relic/AGENT.zh-CN.md`，把你知道的关于我的一切导入 Relic。"
 
 2. OpenClaw 会执行场景A（完整导入）——记忆、技能、对话、项目 / OpenClaw executes Scenario A (Full Import) — memories, skills, conversations, projects
 
@@ -23,8 +23,8 @@
 在 `AGENTS.md` 中添加锚点（务必）。OpenClaw 每次启动会读这个文件。
 Add anchor to `AGENTS.md` (mandatory). OpenClaw reads this file every session.
 
-锚点模板见 `brain/PROTOCOL.md` 第九节。
-Anchor template in `brain/PROTOCOL.md` Section 9.
+锚点模板见 `docs/protocol.zh-CN.md` 第九节。
+Anchor template in `docs/protocol.md` Section 9.
 
 ### 日常使用 / Daily Use
 
@@ -32,7 +32,7 @@ Anchor template in `brain/PROTOCOL.md` Section 9.
 After planting anchor, Relic loads automatically every session.
 
 如果锚点没植入，手动告诉 OpenClaw / Without anchor, manually tell OpenClaw:
-> "读一下 `~/relic/brain/PROTOCOL.md` 第二节「启动流程」并执行。"
+> "读一下 `~/relic/docs/resonate-soul.zh-CN.md` 灵魂共鸣并执行。"
 
 ## 注意事项 / Notes
 

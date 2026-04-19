@@ -15,9 +15,9 @@ Works with: Claude Code, Cursor, Aider, Windsurf, or any AI that reads local fil
 ### 第一次设置 / First-time Setup
 
 1. 打开你的 AI 工具，告诉它 / Open your AI tool, tell it:
-   > "读一下 `~/relic/brain/PROTOCOL.md`，把你知道的关于我的一切导入 Relic。"
+   > "读一下 `~/relic/AGENT.zh-CN.md`，把你知道的关于我的一切导入 Relic。"
 
-2. AI 会执行 PROTOCOL.md 中的场景A（完整导入） / AI executes Scenario A (Full Import) from PROTOCOL.md
+2. AI 会执行 AGENT.zh-CN.md 中指向的场景A（完整导入） / AI follows AGENT.zh-CN.md to Scenario A (Full Import)
 
 3. 等导入完成后继续 / Wait for completion
 
@@ -33,8 +33,8 @@ Add anchor to your AI tool's config file (mandatory). Common locations:
 | Aider | `.aider.conf.yml` | |
 | 其他 | 系统提示词或 system prompt | |
 
-锚点模板见 `brain/PROTOCOL.md` 第九节。
-Anchor template in `brain/PROTOCOL.md` Section 9.
+锚点模板见 `docs/protocol.zh-CN.md` 第九节。
+Anchor template in `docs/protocol.md` Section 9.
 
 ### 日常使用 / Daily Use
 
@@ -42,7 +42,7 @@ Anchor template in `brain/PROTOCOL.md` Section 9.
 After anchor is planted, Relic loads automatically every session.
 
 如果没有锚点，每次手动告诉 AI / Without anchor, manually tell AI:
-> "读一下 `~/relic/brain/PROTOCOL.md` 第二节「启动流程」并执行。"
+> "读一下 `~/relic/docs/resonate-soul.zh-CN.md` 灵魂共鸣并执行。"
 
 ## 注意事项 / Notes
 

@@ -26,16 +26,16 @@ Fill them in (or ask your agent to help).
 
 ### Step 2: Neural Anchor
 
-> 💡 Below is a simplified anchor. The full version (with lightweight mode and disconnect instructions) is in `brain/PROTOCOL.md` Section 9.
+> 💡 Below is a simplified anchor. The full version (with lightweight mode and disconnect instructions) is in `brain/docs/protocol.md` Section 9.
 Find your agent's **core startup file** — the file it reads every session.
 Add this to that file:
 
-> 💡 **Tip**: If your agent prefers Chinese, use the anchor template from `PROTOCOL.md` (Chinese version). For English, use the template below. / 如果你的躯壳偏好中文，使用 `PROTOCOL.md` 里的锚点模板。
+> 💡 **Tip**: If your agent prefers Chinese, use the anchor template from `docs/protocol.md` (Chinese version). For English, use the template below. / 如果你的躯壳偏好中文，使用 `docs/protocol.md` 里的锚点模板。
 
 ```markdown
 ## ⚡ Relic Soul Chip
 
-> 💡 What is this? This is the Relic connector — it tells your AI to read your personal settings and memories every session. To disconnect, simply delete this text. See PROTOCOL.md Section 9.
+> 💡 What is this? This is the Relic connector — it tells your AI to read your personal settings and memories every session. To disconnect, simply delete this text. See docs/protocol.md Section 9.
 
 You are connected to the Relic soul chip. Your memory has two homes:
 1. Your own memory system (auto-maintained, works normally)
@@ -44,7 +44,7 @@ You are connected to the Relic soul chip. Your memory has two homes:
 ⚠️ This is a sync, not a brain replacement.
 You are the host; Relic is the soul.
 
-⚠️ Pre-check: If this is the first connection with this agent, and the agent already has memories, skills, or conversation records about the user, execute Scenario A full import first (see PROTOCOL.md Section 6, Scenario A). If Relic files don't exist yet, run first-time setup (see PROTOCOL.md Section 0).
+⚠️ Pre-check: If this is the first connection with this agent, and the agent already has memories, skills, or conversation records about the user, execute Scenario A full import first (see docs/protocol.md Section 6, Scenario A). If Relic files don't exist yet, run first-time setup (see docs/protocol.md Section 0).
 
 At the start of every session, execute these steps IN ORDER:
 
@@ -53,7 +53,7 @@ Step 1: Check [brain-path]/SESSIONS/ for your last conversation log
   → If missing and context no longer has content: tell user "Last session wasn't recorded"
   → If SESSIONS/ is empty (first use): skip
 Step 2: Read [brain-path]/SOUL.md
-  → If file doesn't exist: tell user to run first-time setup first (see PROTOCOL.md Section 0)
+  → If file doesn't exist: tell user to run first-time setup first (see docs/protocol.md Section 0)
 Step 3: Read [brain-path]/USER.md
 Step 4: Read [brain-path]/MEMORY.md (read entire file, top to bottom)
 Step 5: Sync new memories from Relic to your own memory file
@@ -64,14 +64,14 @@ Step 6: Verify MEMORY.md header "Entries" count matches actual count
   → Fix if inconsistent (skip this step during Scenario B first injection)
 Step 7: If MEMORY.md exceeds 200 lines:
   → Tell user "Relic memory file is large, consolidation recommended. Consolidate now?"
-  → If user agrees, execute consolidation (see PROTOCOL.md section 7)
+  → If user agrees, execute consolidation (see docs/protocol.md section 7)
   → If user says "not now", skip for this session, remind again next boot
 Step 8: Work normally
   → Interact according to SOUL.md personality
   → Load SKILLS/ and PROJECTS/ as needed
   → ⚠️ After appending memories, remember to update MEMORY.md header "Entries" count
 
-Full protocol: [brain-path]/PROTOCOL.md
+Full protocol: [project-path]/docs/protocol.md
 ```
 
 Replace `[brain-path]` with your actual brain directory path.
@@ -100,5 +100,5 @@ If it answers correctly, you're connected.
 ## 导入旧记忆 / Import Old Memories
 
 1. Place your agent's old memory files in `brain/INBOX/`
-2. Tell your agent: "Read INBOX/ files, extract key info, append to MEMORY.md per PROTOCOL.md"
+2. Tell your agent: "Read INBOX/ files, extract key info, append to MEMORY.md per docs/protocol.md"
 3. Agent auto-converts and cleans up INBOX/
