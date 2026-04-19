@@ -43,8 +43,36 @@ This skill reads and writes Markdown files in the user's `~/relic/brain/` direct
 | `INBOX/` | ✅ During import | ✅ Buffer for imports | Auto-cleaned after import |
 | `.relic-version` | ✅ Every session | ❌ | Version number only |
 
-No files outside `~/relic/` are read or written, except:
-- **Anchor**: a short text block added to ONE agent config file (user's choice, user confirms content before planting)
+No files outside `~/relic/` are read or written, except the anchor (see below).
+
+### Anchor (Config File Modification)
+
+This skill adds a short text block ("anchor") to ONE of the user's agent config files. This enables auto-loading Relic every session.
+
+**Allowed anchor targets** (only these files, user chooses one):
+| Agent | Config File |
+|-------|------------|
+| OpenClaw | `AGENTS.md` |
+| Claude Code | `CLAUDE.md` |
+| OpenCode | `WORK_RULES.md` or `opencode.json` instructions field |
+| Cursor | `.cursorrules` |
+| Hermes | Config file or prompt template |
+
+**Safety guarantees:**
+- Anchor content is shown to user in full BEFORE planting — user must explicitly confirm
+- Anchor is appended to the end of the config file — does not modify or overwrite existing content
+- **Rollback**: To remove, delete the anchor text block (marked with `## ⚡ Relic Soul Chip`). Relic stops loading immediately. No residual effects.
+- No other config files are ever read or written
+
+### Data Capture Rules
+
+During setup (only), the agent reads existing data from the agent's own memory to import into Relic:
+- **What's captured**: AI personality settings, user preferences, conversation history, skills, projects
+- **Sensitive information** (passwords, API keys, phone numbers, email addresses, financial info, private documents) → agent MUST ask user before recording. User can skip any item.
+- **SOUL.md fields** (setup only): AI name, core mission, personality traits, behavioral norms — all provided by user or copied from existing agent settings
+- **USER.md fields** (setup only): User's preferred name, communication preferences, work habits — all provided by user
+- **MEMORY.md** (every session): Preferences and decisions are preserved verbatim; experiences can be condensed; events can be summarized. Each entry has date, source agent, type, and importance level.
+- **SESSIONS/** (every session): Raw conversation log saved at session end. Not summarized. User can opt out.
 
 ## Network Access
 
