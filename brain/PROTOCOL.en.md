@@ -4,7 +4,7 @@
   Relic Soul Chip
   Author: LucioLiu · https://github.com/LucioLiu/relic
   License: GPL v3
-  Format version: 1.1.2
+  Format version: 1.1.3
   Backup before editing.
 -->
 
@@ -364,22 +364,55 @@ Step 2: Import memories → MEMORY.md
   ✅ Completion Check: MEMORY.md written, Entries count accurate, Last Updated set.
 
 Step 3: Import skills → SKILLS/
-  Scan and report: bring methodology skills (work habits, user-defined templates, judgment rules).
-  Do NOT bring: platform-specific tools (scripts needing runtime, tools depending on specific APIs).
-  Unsure: ask user. For mixed content, bring only methodology part.
-  ✅ Completion Check: Skills imported or "0 items" reported. Format verified.
+  ⚠️ Format requirement: One folder per skill, with at least one .md description file inside (see Section 5).
+  Do NOT write all skills into a single flat file. Correct format:
+    SKILLS/debugging-workflow/README.md  ✅
+    SKILLS/installed-skills.md           ❌ (this is a list, not a skill)
+  
+  Steps:
+  1. Ask the user: "What old skills/workflows/templates do you have that need importing? Tell me the content or file locations."
+  2. If the user provides a skill list: create one folder per skill, each with a README.md inside
+  3. If the user provides files: move them into corresponding folders, preserving original content
+  Filter rules:
+  - Bring: methodology skills (work habits, user-defined templates, judgment rules)
+  - Skip: platform-specific tools (scripts needing runtime, tools depending on specific APIs)
+  - Unsure: ask user. For mixed content, bring only methodology part.
+  No content → report "SKILLS/: 0 items (no old data)".
+  ✅ Completion check: Does SKILLS/ contain multiple folders? Are there any flat single files (if so, split into folders)?
 
 Step 4: Import conversations → SESSIONS/
-  Organize by YYYY-MM/, original content unchanged and unsummarized.
-  If old agent has no persistent conversation mechanism, report "Unable to retrieve old conversations". Do NOT skip the archive step.
-  ✅ Completion Check: Conversations imported or reason reported. SESSIONS/ directory created.
+  ⚠️ Conversations are raw ore — must be preserved in full, never summarized.
+  
+  Steps:
+  1. Ask the user: "Do you have old conversation logs that need importing? If so, tell me the file location or paste the content."
+  2. If the user provides conversation files or content:
+     - Organize by YYYY-MM/ directories
+     - Preserve original content unchanged and unsummarized
+     - File naming: YYYY-MM-DD.[agent-name].md
+  3. If the user confirms no old conversations:
+     - Report "SESSIONS/: 0 items (user confirmed no old conversations)"
+     - Still create the SESSIONS/YYYY-MM/ directory
+  Forbidden:
+  - Do NOT count only the current session as "imported" — the current session is not an old conversation
+  - Do NOT save summaries as raw records — must be full conversations or verbatim preserved
+  ✅ Completion check: Are there historical conversations imported (not just the current session)? Is SESSIONS/ directory created?
 
 Step 5: Import projects → PROJECTS/
-  Identify projects from memories and conversations, classify by portability:
-  - No special environment dependency → portable: move all files
-  - Partial dependency → partially portable: move generic files, text descriptions for platform-specific
-  - Fully dependent → non-portable: create .md record file only
-  ✅ Completion Check: Projects imported or "0 items" reported.
+  ⚠️ One folder per project. Folders must have substantive content, not just a one-line summary.
+  
+  Steps:
+  1. Scan all project names from memories and conversations
+  2. For each project, ask the user: "What files should I import for project [name]? Or should I just record key information?"
+  3. Based on user response and project portability:
+     - No special environment dependency → move actual files (not just README)
+     - Partial dependency → move generic files, text descriptions for platform-specific
+     - Fully dependent → at minimum, write a .md record file containing:
+       * Project goal and status
+       * Key decisions and architecture choices
+       * Known issues and next steps
+       * Related file paths (if files are outside Relic)
+  No content → report "PROJECTS/: 0 items (no old data)".
+  ✅ Completion check: Does each project folder have substantive content (not just title + one line)? Has the user been asked?
 
 Step 6: Cleanup and Confirmation
   1. Fidelity check: original vs converted, warn if compression exceeds 50%
