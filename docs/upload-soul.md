@@ -11,7 +11,7 @@
 
 ---
 
-## Seven Memory File Checklist
+## Seven Memory Categories
 
 Check every item before starting. All are mandatory:
 
@@ -19,7 +19,7 @@ Check every item before starting. All are mandatory:
 2. ☐ `USER.md` — User (who are you)
 3. ☐ `MEMORY.md` — Memory (preferences, decisions, experiences)
 4. ☐ `SKILLS/` — Skills (learned abilities)
-5. ☐ `PROJECTS/` — Projects (work done)
+5. ☐ `PROJECTS/` — Plans (ongoing or completed plans)
 6. ☐ `SESSIONS/` — Sessions (raw conversation logs)
 7. ☐ `ARCHIVE/` — Archive (historical backups)
 
@@ -32,9 +32,9 @@ Check every item before starting. All are mandatory:
 | Inventory | Scan your storage first, **then ask user to confirm** | Do not decide import scope yourself |
 | SOUL | **Copy original text directly**, do NOT summarize or rewrite | Compressing details = violation |
 | MEMORY | Preference/decision preserve verbatim, experience can condense | Losing key params = violation |
-| SKILLS | Only import user-created skill files, one folder per skill | Self-summarized "methodology" ≠ skill |
+| SKILLS | Import all skill files, one folder per skill, no source restriction | Empty folders with no content ≠ skill |
 | SESSIONS | Ask user for old conversation locations, preserve in full | Current session ≠ old conversation |
-| PROJECTS | Ask user what to import per project, folders with substantive content | Title + one line =不合格 |
+| PROJECTS | Ask user what to import per plan, folders with substantive content | Title + one line = not acceptable |
 | Report | Report all 7 categories item by item, include "0 items" | Omitting any category = failure |
 | Sensitive | Already in old host = transferable (tag "verified source"), new discovery = must ask user | |
 
@@ -43,7 +43,7 @@ Check every item before starting. All are mandatory:
 ## Step 1: Inventory — Scan Yourself First, Then Ask User to Confirm
 
 🔴 **First**: Scan all your persistent storage (memory/, workspace/, skills/ directories, etc.). List what you found:
-- Soul settings (N items), User preferences (N items), Memories (N entries), Skill files (N), Conversation files (N), Project files (N), Archive files (N)
+- Soul settings (N items), User preferences (N items), Memories (N entries), Skill files (N), Conversation files (N), Plan files (N), Archive files (N)
 - Also list the data source locations (e.g., "~/.openclaw/workspace/memory/ has 42 files")
 
 🔴 **Then**: Show the list to user and ask two questions:
@@ -83,23 +83,22 @@ Template files (.template.md) remain as backups. Also create directories if they
 ⚠️ Raw source files are the fidelity baseline. Format conversion is refinement, not compression.
 
 1. Place old agent's memory files into `INBOX/`
-2. Append to `MEMORY.md` in Relic format (each entry with date, agent name, type, importance)
+2. Append to `MEMORY.md` in Relic's new category-based format: under each category heading, add lines of the form:
+   - content [hostname] | Importance: level
 3. Fidelity rules:
 
-| Type | Fidelity Requirement |
-|------|---------------------|
-| Preference / Decision / Correction | **Must preserve verbatim** |
-| Experience | Can condense, but keep key parameters |
-| Event | Can summarize |
-| Emotion | Can condense background |
+- Preference / Decision / Correction → preserve verbatim
+- Experience → can condense, but key parameters must not be lost
+- Event → can summarize
+- Mood → can compress context
 
-⚠️ When in doubt, preserve verbatim. Lost originals cannot be recovered.
+⚠️ 不确定就逐字保留。丢了找不回来。
 
 4. Ask user about sensitive information (see "Sensitive Information" below)
-5. Sort by timestamp, earliest first
-6. After writing, count `##` headings, update header "Entries" count and "Last Updated: YYYY-MM-DD"
+5. Sort by category order, not by timestamp
+6. After writing, review MEMORY.md: ensure category sections exist and entries count per category is tracked
 
-✅ **Completion Check**: Does MEMORY.md entry count match actual `##` heading count?
+✅ Completion Check: MEMORY.md entries exist for each category and counts reflect actual entries
 
 ## Step 3: SKILLS + PROJECTS
 
@@ -117,33 +116,32 @@ Steps:
 3. If the user provides files: move them into corresponding folders, preserving original content
 
 Filter rules:
-- Bring: methodology skills (work habits, user-defined templates, judgment rules)
-- Skip: platform-specific tools (scripts needing runtime, tools depending on specific APIs)
+- Bring: all skills/workflows/templates, including platform-specific tools
 - Unsure: ask user. For mixed content, bring only methodology part.
 
 No content → report "SKILLS/: 0 items (no old data)".
 
-✅ **Completion check**: Does SKILLS/ contain multiple folders? Are there any flat single files (if so, split into folders)?
+✅ Completion check: Does SKILLS/ contain multiple folders? Are there any flat single files (if so, split into folders)?
 
-### 3b. Import Projects → PROJECTS/
+### 3b. Import Plans → PROJECTS/
 
-⚠️ One folder per project. Folders must have substantive content, not just a one-line summary.
+⚠️ One folder per plan. Folders must have substantive content, not just a one-line summary.
 
 Steps:
-1. Scan all project names from memories and conversations
-2. For each project, ask the user: "What files should I import for project [name]? Or should I just record key information?"
-3. Based on user response and project portability:
-   - No special environment dependency → move actual files (not just README)
-   - Partial dependency → move generic files, text descriptions for platform-specific
-   - Fully dependent → at minimum, write a .md record file containing:
-     * Project goal and status
-     * Key decisions and architecture choices
-     * Known issues and next steps
-     * Related file paths (if files are outside Relic)
+1. Scan all plan names from memories and conversations
+2. For each plan, ask the user: "What files should I import for plan [name]? Or should I just record key information?"
+3. Based on user response and plan portability:
+    - No special environment dependency → move actual files (not just README)
+    - Partial dependency → move generic files, text descriptions for platform-specific
+    - Fully dependent → at minimum, write a .md record file containing:
+      * Plan goal and status
+      * Key decisions and architecture choices
+      * Known issues and next steps
+      * Related file paths (if files are outside Relic)
 
-No content → report "PROJECTS/: 0 items (no old data)".
+No content → report "Plans/: 0 items (no old data)".
 
-✅ **Completion check**: Does each project folder have substantive content (not just title + one line)? Has the user been asked?
+✅ **Completion check**: Does each plan folder have substantive content (not just title + one line)? Has the user been asked?
 
 ## Step 4: SESSIONS + ARCHIVE
 
@@ -171,7 +169,7 @@ Steps:
 
 1. Fidelity check: original vs converted, warn if compression exceeds 50%
 2. Move INBOX/ source files to `ARCHIVE/raw/` (never delete)
-3. Update MEMORY.md header "Entries" count and "Last Updated" to current date
+3. Update MEMORY.md header "Entries" count and "Last consolidated" to current date
 
 ✅ **Completion check**: Are original files saved in ARCHIVE/raw/?
 
@@ -209,15 +207,15 @@ If user absolutely refuses, record "Anchor not planted" in MEMORY.md and explain
 
 ## Step 6: Verification
 
-Check each of the seven memory files (blocking — ALL must pass):
+Check seven memory sections (blocking — ALL must pass):
 
-a. SOUL.md — Core mission filled? Personality complete?
-b. USER.md — User preferences filled?
-c. MEMORY.md — Imported from old host (if any)? Header entries count and last updated accurate?
-d. SKILLS/ — Imported from old host (if any)? Format correct?
-e. PROJECTS/ — Imported from old host (if any)? Format correct?
-f. SESSIONS/ — Directory created? Old conversations imported (if any)?
-g. ARCHIVE/ — Directory created? Originals archived (if any)?
+- SOUL.md — Core mission filled? Personality complete?
+- USER.md — User preferences filled?
+- MEMORY.md — Imported memories exist by category? Header counts reflect actual entries?
+- SKILLS/ — Imported from old host (if any)? Format correct?
+- PROJECTS/ — Imported plans exist? Format correct?
+- SESSIONS/ — Directory created? Old conversations imported (if any)?
+- ARCHIVE/ — Directory created? Originals archived (if any)?
 
 Any item fails → go back to that step and redo.
 All pass → ask user: "What's my AI's name? What's my name?" Both must match.
@@ -235,7 +233,7 @@ Report format:
 3. Memory (MEMORY.md): N entries imported
 4. Skills (SKILLS/): N imported / 0 items (no old data)
 5. Sessions (SESSIONS/): N files imported / Could not retrieve old conversations
-6. Projects (PROJECTS/): N imported / 0 items (no old data)
+6. Plans (PROJECTS/): N imported / 0 items (no old data)
 7. Archive (ARCHIVE/): N source files archived
 ```
 
