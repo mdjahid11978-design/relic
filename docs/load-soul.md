@@ -45,20 +45,15 @@ If SOUL.md personality conflicts with your default persona, SOUL.md takes preced
 
 ## B-3. Sync Relic Content to Your System
 
-Check memories/skills/projects item by item. Transfer as much as capacity allows.
+Check memories/skills/plans item by item. Transfer as capacity allows.
 
-- MEMORY.md entries → sync to your memory file, tag with source `[from Relic/original-host-name]`
-- SKILLS/ skills → sync to your skill storage
-- PROJECTS/ projects → sync to your project storage
-- Content that doesn't fit → create local backup files
+**Memory sync**: Sync each memory entry from MEMORY.md to your own memory file. MEMORY.md is organized by category (e.g., `## Preferences`/`## Decisions`), each entry formatted as `- Content [HostName] | Importance: high/medium/low`. Preserve original format and content when syncing.
 
-Sync format:
-```markdown
-## YYYY-MM-DD HH:MM [from Relic/original-host-name]
-Content: [memory content]
-Type: Preference / Decision / Experience / Event / Correction / Emotion
-Importance: High / Medium / Low
-```
+**Skill sync**: Scan SKILLS/ directory, adapt each skill folder's content to your own skill format. Preserve core methodology, adapt platform-specific parts as needed.
+
+**Plan sync**: Scan PROJECTS/ directory, sync plan documents to your system. Each folder corresponds to a plan (can be ongoing or completed).
+
+**When capacity is insufficient**: Create local backup files for content that doesn't fit, record which items were not synced, inform the user.
 
 ## B-4. Plant Anchor
 
@@ -95,13 +90,13 @@ Full protocol reference: [project-path]/docs/protocol.md
    - USER.md user info loaded?
    - MEMORY.md memories synced?
    - SKILLS/ skills synced?
-   - PROJECTS/ projects synced?
+   - PROJECTS/ plans synced?
    - Coverage < 80% → warn user
 
 2. **Report to user**:
    - How many memory entries synced
    - How many skills synced
-   - How many projects synced
+   - How many plans synced
    - Whether anchor was planted
    - Any capacity issues (what wasn't transferred)
 
