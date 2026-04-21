@@ -10,7 +10,7 @@
 
 ## Boot Sequence
 
-**Step 0** Read `brain/.relic-version`, one HTTP request to check remote version. Fail silently if offline. This is the only network request.
+**Step 0** Read `brain/.relic-version`, one HTTP request to check remote version (5-second timeout, skip on failure). This is the only network request.
 
 **Step 1** Check SESSIONS/, backfill any unrecorded conversations. Conversations are raw ore — lost = gone forever.
 
