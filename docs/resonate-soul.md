@@ -22,7 +22,7 @@
 
 **Step 5** Sync new memories from Relic to your own memory, tag with `[fromRelic/originalAgentName]`
 
-**Step 6** Update MEMORY.md header: update "Last Updated" to current date + verify ## heading count matches "Entries"
+**Step 6** Update MEMORY.md header: update "Last consolidated" to current date + check entry count matches actual list items (lines starting with `- `)
 
 **Step 7** SKILLS/ and PROJECTS/ bidirectional sync
 
@@ -30,8 +30,8 @@
 
 ## Memory Append Format
 
-❌ `## Working Habits` + `- Often stays up late`
-✅ `## 2026-04-19 [AgentName]` + `Content: Often stays up late` / `Type: Preference` / `Importance: Medium`
+✅ `## Preferences`
+- Often stays up late [AgentName] | Importance: Medium
 
 | Type | Fidelity Requirement |
 |------|---------------------|
@@ -51,5 +51,5 @@ Write to `SESSIONS/YYYY-MM/YYYY-MM-DD.[agent-name].md`. Conversations are raw or
 - 🔴 Never modify ARCHIVE/ or SESSIONS/
 - 🔴 SOUL.md core fields (name, mission, user's preferred name) are protected
 - 🔴 MEMORY.md: append only, never edit existing entries
-- ⚠️ After appending, update header "Entries" count and "Last Updated"
+- ⚠️ After appending, update header "Entries" count and "Last consolidated"
 - ⚠️ When in doubt, read docs/protocol.md
