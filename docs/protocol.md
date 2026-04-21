@@ -26,12 +26,12 @@ Each agent is both reader and writer — bidirectional sync, grow-only.
 
 > **⚡ Mandatory Import Checklist — No Exceptions**
 >
-> Relic has **seven memory file categories** — all are mandatory:
+> Relic has **seven memory categories** — all are mandatory:
 > 1. `SOUL.md` — Soul (who am I)
 > 2. `USER.md` — User (who are you)
 > 3. `MEMORY.md` — Memory (what happened)
 > 4. `SKILLS/` — Skills (learned abilities)
-> 5. `PROJECTS/` — Projects (work done)
+> 5. `PROJECTS/` — Plans — ongoing or completed plans
 > 6. `SESSIONS/` — Sessions (raw conversation logs)
 > 7. `ARCHIVE/` — Archive (historical backups)
 >
@@ -50,9 +50,9 @@ Each agent is both reader and writer — bidirectional sync, grow-only.
 > | Inventory | Scan your storage first, **then ask user to confirm** | Do not decide import scope yourself |
 > | SOUL | **Copy original text directly**, do not summarize or rewrite | Compressing details = violation |
 > | MEMORY | Preference/decision preserve verbatim, experience can condense | Dropping key parameters = violation |
-> | SKILLS | Only move user-created skill files, one folder per skill | Self-summarized "methodology" is NOT a skill |
+> | SKILLS | Move all skill files, one folder per skill | No source restriction; platform tools allowed |
 > | SESSIONS | Ask user for old conversation locations, save in full (never summarize) | Current session does NOT count as old |
-> | PROJECTS | Ask user what to move per project, folders must have substantive content | Title + one line only = not acceptable |
+> | PROJECTS | Ask user what to transfer for each plan, folder has substantive content | Title + one line only = not acceptable |
 > | Report | Report all 7 categories item by item, including "0 items" ones | Omitting any category = failure |
 > | Sensitive info | Already in old host = can migrate (tag "verified source"), newly discovered = must ask user |
 
@@ -97,10 +97,10 @@ Each agent is both reader and writer — bidirectional sync, grow-only.
    (Prevents hosts from accidentally modifying soul and user files. Windows users can skip this step)
 
 5. Import verification (blocking — ALL must pass before continuing)
-   Check each of the seven memory files:
+   Check each of the seven memory categories:
    a. SOUL.md — Core mission filled? Personality complete?
    b. USER.md — User preferences filled?
-   c. MEMORY.md — Imported from old host (if any)? Header "Entries" count and "Last Updated" accurate?
+   c. MEMORY.md — Imported from old host (if any)? Header "Entries" count and "Last consolidated" accurate?
    d. SKILLS/ — Imported from old host (if any)? Format correct?
    e. PROJECTS/ — Imported from old host (if any)? Format correct?
    f. SESSIONS/ — Directory created? Old conversations imported (if any)?
@@ -111,13 +111,13 @@ Each agent is both reader and writer — bidirectional sync, grow-only.
 
 6. Tell the user:
    - Relic folder path (e.g., ~/relic/brain/)
-   - The seven memory files: SOUL/USER/MEMORY/SKILLS/PROJECTS/SESSIONS/ARCHIVE
+   - The seven memory categories: SOUL/USER/MEMORY/SKILLS/PROJECTS/SESSIONS/ARCHIVE
    - Sync principle: hosts only sync memories at the start of each new session. Switching hosts
      mid-conversation does NOT auto-sync. If you need to hand off immediately, manually tell the
      current host: "Write key info from this conversation to Relic now."
    - "Conversations are raw ore — once lost, gone forever. Build the habit of having hosts write regularly."
 
-7. Scan all your persistent storage for any existing memories, skills, or conversations about this user. Regardless of how much you find, you MUST execute Scenario A full import (see Section 6). Scenario A covers import of all seven memory file categories — every category must be processed, none may be skipped.
+7. Scan all your persistent storage for any existing memories, skills, or conversations about this user. Regardless of how much you find, you MUST execute Scenario A full import (see Section 6). Scenario A covers import of all seven memory categories — every category must be processed, none may be skipped.
 ```
 
 ⚠️ Hosts with < 32K context are not suitable for Relic. Warn user and suggest removal if detected.
@@ -147,9 +147,9 @@ Core rule: grow-only (G-Set)
 |------|-----------|-------------|
 | `SOUL.md` | 🟡 Enrichable (core protected) | Soul — who am I, core mission, values, style |
 | `USER.md` | 🟡 Enrichable (core protected) | User — who are you, preferences, habits |
-| `MEMORY.md` | 🟡 Append Only | Memory — with timestamps and source agent |
-| `SKILLS/*.md` | 🟢 Read/Write | Skills — one file per skill |
-| `PROJECTS/*.md` | 🟢 Read/Write | Project documents |
+| `MEMORY.md` | 🟡 Append Only | Long-term memory — category-based structured memory (preferences, decisions, experiences, etc.), each entry tagged with host name and importance level |
+| `SKILLS/*.md` | 🟢 Read/Write | Skills — one folder per skill, any source (user-created, platform tools, etc.) |
+| `PROJECTS/*.md` | 🟢 Read/Write | Plan documents — ongoing or completed plans |
 | `SESSIONS/` | 🔴 Read Only* | Raw conversation logs — don't auto-read contents on startup, but must create directory and write periodically |
 | `ARCHIVE/` | 🔴 Read Only | Consolidated archives — never deleted |
 | `INBOX/` | 🟢 Read/Write | Import buffer |
@@ -164,6 +164,28 @@ Core rule: grow-only (G-Set)
 
 ### SESSIONS vs ARCHIVE Distinction
 SESSIONS is "raw ore" — original content never processed by anyone. Anything summarized, condensed, or organized is NOT raw ore — put it in ARCHIVE. When in doubt, ARCHIVE.
+
+### SESSIONS vs MEMORY
+
+- MEMORY.md: Each entry is extracted and refined knowledge: organized by category (e.g., ## Preferences / ## Decisions), format is `- Content [HostName] | Importance: high/medium/low`.
+- **SESSIONS/** = Complete raw conversation logs with the user. Original words unchanged, full transcripts. This is "unrefined ore" — includes user's original words, hesitations, back-and-forth in conversation, and all AI responses.
+
+⚠️ **Key distinction**: MEMORY contains knowledge **refined** from conversation. SESSIONS contains the conversation **itself**. These cannot replace each other.
+
+### ⚠️ Platform Directory vs Relic Directory Mapping (Easy to Confuse!)
+
+Many platforms name their log folder "memory" — but that's logs, not Relic's MEMORY.md!
+
+| Old Platform Directory | → Relic Location | Notes |
+|-----------------------|------------------|-------|
+| OpenClaw's `memory/*.md` log files | → `SESSIONS/YYYY-MM/` | Raw conversation logs, NOT MEMORY |
+| OpenClaw's `MEMORY.md` curated memory | → `MEMORY.md` | THIS is MEMORY |
+| OpenClaw's `SOUL.md` | → `SOUL.md` | Direct alignment |
+| OpenClaw's `IDENTITY.md` | → Merge into `SOUL.md` "Supplement" section | Relic has no IDENTITY.md |
+| Hermes's `memories/` folder | → Split by content type | Logs → SESSIONS, memories → MEMORY |
+
+🔴 **Iron Rule**: Log files (conversation logs stored by date) → SESSIONS/, NOT MEMORY.md!
+MEMORY.md only contains "knowledge refined from logs".
 
 ---
 
@@ -196,20 +218,20 @@ Step 4: Read MEMORY.md (read entire file, top to bottom)
   → Agent Registry section: newly connecting agent should append an entry
 
 Step 5: Sync new memories from Relic to your own memory file
-  Quick check: compare MEMORY.md header "Entries" and "Last Updated" with actual ## heading count — if same, skip
-  Append with source tag: [fromRelic/originalAgentName]
+  Quick check: update "Last consolidated" to current date, check if MEMORY.md header "Entries" matches actual list items (lines starting with `- `) — if same, skip
+  Append with source tag: [fromRelic/originalHostName]
 
-Step 6: Verify MEMORY.md header "Entries" count matches actual count; update "Last Updated" to current date; fix if inconsistent
+Step 6: Verify MEMORY.md header "Entries" count matches actual list items (lines starting with `- `); update "Last consolidated" to current date; fix if inconsistent
 
 Step 7: If MEMORY.md exceeds 200 lines, ask user whether to consolidate
 
-Step 8: Skills & Projects Alignment
+Step 8: Skills & Plans Alignment
   → Scan SKILLS/ and PROJECTS/, bidirectionally sync with your own system
   → If skill format is incompatible, keep core methodology, remove platform-specific parts
 
 Step 9: Operate normally
   → Interact according to SOUL.md personality
-  → After appending memories, remember to update MEMORY.md header "Entries" count and "Last Updated" to current date
+  → After appending memories, remember to update MEMORY.md header "Entries" count and "Last consolidated" to current date
   ⚠️ Before ending the session, you MUST write the current conversation to SESSIONS/. Conversations are raw ore — once lost, gone forever.
 
 Extra Rules:
@@ -255,45 +277,49 @@ Extra Rules:
 
 When you discover noteworthy information during work, append to MEMORY.md.
 
-⚠️ **Core principle: Memory is a long-term portrait, not a diary.**
+⚠️ **Core principle: Memory is a long-term backdrop, not a diary.**
 
-⚠️ Core principle: 100% information preservation > format neatness. Write more, not less.
-Topic zones are completely free — examples below:
-- Work Habits / Tech Preferences / Key Decisions / About the user's cat / Project XXX...
-- Agent freely adds any ## headings. Category names are entirely up to you.
-- No matching category? Create a new one. Don't force content into wrong buckets.
+⚠️ **Core principle (priorities, high to low):**
+1. 100% information preservation > format compliance. Write more, not less.
+2. Copy everything first, then organize. Don't pick and choose while reading — that loses information.
+3. Format is a tool, not a shackle. The formats below are "standard suggestions" — if your content doesn't fit, improvise.
 
-Each memory entry should include:
+**Organization: Group by category, use `## CategoryName` as the heading.**
+
+Category names are completely free. Examples below:
+- Preferences / Decisions / Experiences / Events / About the user's cat / Plan-XXX...
+- No matching category? Create one. Don't force content into wrong buckets.
+
+**Each memory entry format:**
 ```markdown
-Content: [memory content, preserve original wording]
-Type: preference / decision / experience / event / correction / mood
-Importance: high / medium / low
+- Memory content [HostName] | Importance: high/medium/low
+```
+⚠️ Date is NOT a mandatory tag. Only use dates for events or time-sensitive decisions.
+⚠️ Type is implicit in the category name (entries under "Preferences" are naturally preferences). Optional type annotation only when mixing across categories.
+
+⚠️ **Correct example:**
+```markdown
+## Preferences
+- Likes whiskey, especially Japanese whiskey [Hermes-Johnny] | Importance: low
+- Hates anything from Arasaka Corp [OpenClaw-Johnny] | Importance: high
+- Prefers writing songs with guitar over synth [Hermes-Johnny] | Importance: medium
 ```
 
-### Memory Types and Fidelity
-
-| Type | Fidelity Requirement | Notes |
-|------|---------------------|-------|
-| Preference | **Must preserve verbatim** | "Likes X, hates Y" cannot be paraphrased |
-| Decision | **Must preserve verbatim** | Including reasoning when present |
-| Experience | Can condense somewhat | But key parameters, commands, file paths must be kept exactly |
-| Event | Can summarize | Keep dates, outcomes, key numbers |
-| Correction | **Must preserve verbatim** | Original text + corrected text must not be changed |
-| Mood | Can condense context | Keep trigger reason, the emotion itself, scope of impact |
-
-⚠️ Floor rule: If unsure whether to condense, preserve verbatim. Lost originals cannot be recovered.
+**❌ Wrong example:**
+```markdown
+## 2026-04-19 [OpenClaw-Johnny]          ← DON'T use dates as headings, use category names
+Content: Likes whiskey                         ← Missing host name, missing importance
+Type: Preference | Importance: low               ← Type is redundant (already under "Preferences" category)
+```
 
 ### Syncing to Agent's Own Memory
 
 When syncing to your own memory file, tag the source:
 ```markdown
-## YYYY-MM-DD HH:MM [fromRelic/originalAgentName]
-Content: [memory content]
-Type: preference / decision / experience / event / correction / mood
-Importance: high / medium / low
+- [fromRelic/originalHostName] Memory content | Importance: high/medium/low
 ```
 
-Must do: 1. Tag source 2. Preserve original timestamp 3. Preserve original type and importance
+Must do: 1. Tag source 2. Preserve original content 3. Preserve importance
 
 ### Sensitive Information
 
@@ -314,24 +340,22 @@ Must do: 1. Tag source 2. Preserve original timestamp 3. Preserve original type 
   - 🧬 Anything user explicitly marks as confidential
 - Not sure which scenario? → Treat as first-time entry, ask user first.
 
-After appending memories, **must** update MEMORY.md header "Entries" count and "Last Updated" to current date.
+After appending memories, **must** update MEMORY.md header "Entries" count and "Last consolidated" to current date.
 
 ---
 
-## 5. Skills & Projects File Format
+## 5. Skills & Plans File Format
 
 ### Skills (SKILLS/)
 Each skill gets its own folder. Folder name = skill name. What goes inside is up to the user — plain text .md, code files, configs, anything.
 Only requirement: at least one .md file describing the skill.
 
-⚠️ **What counts as a "skill"? Only these two categories:**
-1. **User-created skill files**: Skills the user actively wrote in the old host — skill files, workflow templates, custom prompts, etc.
-2. **Documented methodologies**: Dedicated documents (NOT experience from conversation logs) describing a specific workflow
+⚠️ **Skills have no source restrictions.** Any of these may be imported to SKILLS/:
+1. User-created skill files, workflow templates, custom prompts
+2. Documented methodologies with dedicated docs
+3. Platform-installed tools or skills (if user wants to keep them)
 
-**NOT skills (do NOT import to SKILLS/):**
-- Lessons learned from conversation logs → That's memory, put in MEMORY.md
-- AI's own summarized "methodology" → That's your own understanding, not the user's skill
-- Platform-specific tools (scripts needing specific runtimes) → Do not import
+Only exclusion: folders with no substantive content.
 
 ```
 SKILLS/
@@ -353,8 +377,8 @@ Notes: - ...
 
 Before importing, ask the user: is this skill large? Do you want to import it? Let the user decide based on available space.
 
-### Projects (PROJECTS/)
-Each project gets its own folder. Put whatever files are needed — copy an entire project or just a description doc.
+### Plans (PROJECTS/)
+Each plan gets its own folder. For ongoing or completed plans — copy an entire plan or just a description doc.
 
 ```
 PROJECTS/
@@ -365,7 +389,7 @@ PROJECTS/
 └── ...
 ```
 
-Same: ask the user before importing large projects.
+Same: ask the user before importing large plans.
 
 ---
 
@@ -373,19 +397,19 @@ Same: ask the user before importing large projects.
 
 ### Scenario A: Full Import (Empty Relic + Agent with Memory)
 
-**Pre-flight checklist — 7 memory file categories (must verify ALL before starting):**
+**Pre-flight checklist — 7 memory categories (must verify ALL before starting):**
 1. `SOUL.md` — Soul (who am I)
 2. `USER.md` — User (who are you)
 3. `MEMORY.md` — Memory (what happened)
 4. `SKILLS/` — Skills (learned abilities)
-5. `PROJECTS/` — Projects (work done)
+5. `PROJECTS/` — Plans (ongoing or completed)
 6. `SESSIONS/` — Sessions (raw conversation logs)
 7. `ARCHIVE/` — Archive (historical backups)
 
 ```
 Step 1: Inventory — scan yourself first, then ask user to confirm
   🔴 First: Scan all your persistent storage (memory/, workspace/, skills/ directories, etc.). List what you found:
-  - Soul settings (N items), User preferences (N items), Memories (N entries), Skill files (N), Conversation files (N), Project files (N), Archive files (N)
+  - Soul settings (N items), User preferences (N items), Memories (N entries), Skill files (N), Conversation files (N), Plan files (N), Archive files (N)
   - Also list the data source locations (e.g., "~/.openclaw/workspace/memory/ has 42 files")
   🔴 Then: Show the list to user and ask two questions:
   1. "Above is all the old data I found. Import everything? Or would you like to be selective?"
@@ -397,12 +421,12 @@ Step 1: Inventory — scan yourself first, then ask user to confirm
 Step 2: Import memories → MEMORY.md
   ⚠️ Raw source files are the fidelity baseline. Format conversion is refinement, not compression.
   1. Place old agent's memory files into INBOX/
-  2. Append to MEMORY.md in Relic format (each entry with date, agent name, type, importance)
+  2. Append to MEMORY.md in Relic format (group by category, each entry with host name and importance)
   3. Fidelity rules: preference/decision preserve verbatim, experience can condense but keep key params, events can summarize
   4. Ask user about sensitive information
-  5. Sort by timestamp, earliest first
-  6. After writing, count ## headings, update header "Entries" count and "Last Updated" to current date
-  ✅ Completion Check: MEMORY.md written, Entries count accurate, Last Updated set.
+  5. Sort by category (group by ## headings)
+  6. After writing, count `- ` list items, update header "Entries" count and "Last consolidated" to current date
+  ✅ Completion Check: MEMORY.md entries count matches actual list item count? Last consolidated set.
 
 Step 3: Import skills → SKILLS/
   ⚠️ Format requirement: One folder per skill, with at least one .md description file inside (see Section 5).
@@ -414,10 +438,8 @@ Step 3: Import skills → SKILLS/
   1. Ask the user: "What old skills/workflows/templates do you have that need importing? Tell me the content or file locations."
   2. If the user provides a skill list: create one folder per skill, each with a README.md inside
   3. If the user provides files: move them into corresponding folders, preserving original content
-  Filter rules:
-  - Bring: methodology skills (work habits, user-defined templates, judgment rules)
-  - Skip: platform-specific tools (scripts needing runtime, tools depending on specific APIs)
-  - Unsure: ask user. For mixed content, bring only methodology part.
+  No source restriction — import all skill files the user wants to keep.
+  Only exclude: folders with no substantive content.
   No content → report "SKILLS/: 0 items (no old data)".
   ✅ Completion check: Does SKILLS/ contain multiple folders? Are there any flat single files (if so, split into folders)?
 
@@ -438,37 +460,40 @@ Step 4: Import conversations → SESSIONS/
   - Do NOT save summaries as raw records — must be full conversations or verbatim preserved
   ✅ Completion check: Are there historical conversations imported (not just the current session)? Is SESSIONS/ directory created?
 
-Step 5: Import projects → PROJECTS/
-  ⚠️ One folder per project. Folders must have substantive content, not just a one-line summary.
+Step 5: Import plans → PROJECTS/
+  ⚠️ One folder per plan. Folders must have substantive content, not just a one-line summary.
   
   Steps:
-  1. Scan all project names from memories and conversations
-  2. For each project, ask the user: "What files should I import for project [name]? Or should I just record key information?"
-  3. Based on user response and project portability:
+  1. Scan all plan names from memories and conversations
+  2. For each plan, ask the user: "What files should I import for plan [name]? Or should I just record key information?"
+  3. Based on user response and plan portability:
      - No special environment dependency → move actual files (not just README)
      - Partial dependency → move generic files, text descriptions for platform-specific
      - Fully dependent → at minimum, write a .md record file containing:
-       * Project goal and status
+       * Plan goal and status
        * Key decisions and architecture choices
        * Known issues and next steps
        * Related file paths (if files are outside Relic)
   No content → report "PROJECTS/: 0 items (no old data)".
-  ✅ Completion check: Does each project folder have substantive content (not just title + one line)? Has the user been asked?
+  ✅ Completion check: Does each plan folder have substantive content (not just title + one line)? Has the user been asked?
 
 Step 6: Cleanup and Confirmation
   1. Fidelity check: original vs converted, warn if compression exceeds 50%
   2. Archive originals: move INBOX/ source files to ARCHIVE/raw/ (never delete)
-  3. Update MEMORY.md header "Entries" count and "Last Updated" to current date
-  4. ✅ Final Report — Must report ALL 7 categories to the user, including those with "0 items". Omitting any category is forbidden.
-     Format:
-     1. SOUL.md — [status]
-     2. USER.md — [status]
-     3. MEMORY.md — [N entries imported]
-     4. SKILLS/ — [N skills imported]
-     5. PROJECTS/ — [N projects imported]
-     6. SESSIONS/ — [N sessions imported]
-     7. ARCHIVE/ — [source files archived]
-     If a category genuinely has no content to import, report "Category N: 0 items (no old data)" — never omit, never fabricate.
+  3. Update MEMORY.md header "Entries" count and "Last consolidated" to current date
+  ✅ Completion check: ARCHIVE/raw/ contains original files?
+
+Step 7: Item-by-item Report (mandatory, no exceptions)
+  Must report ALL 7 categories to the user, including those with "0 items". Omitting any category is forbidden.
+  Format:
+  1. SOUL.md — [status]
+  2. USER.md — [status]
+  3. MEMORY.md — [N entries imported]
+  4. SKILLS/ — [N skills imported]
+  5. PROJECTS/ — [N plans imported]
+  6. SESSIONS/ — [N sessions imported]
+  7. ARCHIVE/ — [source files archived]
+  If a category genuinely has no content to import, report "Category N: 0 items (no old data)" — never omit, never fabricate.
 ```
 
 ### Scenario B: Inject (Relic with Content + Empty Agent)
@@ -485,10 +510,14 @@ B-2. Soul Injection
   Priority: core identity (name, mission, values) > behavioral norms > detailed settings
 
 B-3. Sync Relic content to your own systems
-  Memories/skills/projects: check each item, sync as much as you can
+  Memories/skills/plans: check each item, sync as much as you can
   For content that doesn't fit, create local backup file
 
-B-4. Verification and Report
+B-4. Plant Anchor
+  Embed the Relic anchor in your core config file (see Section 9 template)
+  Ensure next new session auto-loads Relic
+
+B-5. Verification and Report
   Coverage check, warn if < 80%. Report full statistics to user.
 ```
 
@@ -500,11 +529,23 @@ Three choices:
   [2] Keep agent soul (replace Relic soul)
   [3] Merge — agent generates preview report, user decides key differences
 
-Regardless of choice, skills, conversations, and projects must be imported (per Scenario A).
+Regardless of choice, skills, conversations, and plans must be imported (per Scenario A).
 
 ---
 
 ## 7. Memory Consolidation
+
+### Consolidation Priority (low to high — consolidate low priority first)
+
+| Priority | Type | Consolidation Method |
+|----------|------|---------------------|
+| Lowest | Mood | Can condense context, keep trigger and emotion |
+| Low | Event | Can summarize, keep time, result, key numbers |
+| Medium | Experience | Can condense, but key parameters, commands, paths cannot be lost |
+| High | Decision | Preserve verbatim with reasoning |
+| Highest | Preference | Preserve verbatim, no condensing |
+| Highest | Correction | Preserve verbatim |
+Consolidation: Start from lowest priority, condense until total lines return to reasonable range.
 
 MEMORY.md grows over time. Consolidation = move to ARCHIVE/ + generate compact version, **not deletion**.
 
@@ -519,7 +560,7 @@ MEMORY.md grows over time. Consolidation = move to ARCHIVE/ + generate compact v
 ### Consolidation Steps
 
 ```
-1. Count ## headings in MEMORY.md = N entries
+1. Count `- ` list items in MEMORY.md = N entries (NOT ## headings)
 2. Write compact version (don't replace yet): keep latest 20 entries verbatim, summarize older ones into 2-3 lines each, target under 100 lines
 3. Show consolidation summary to user, user confirms or corrects
 4. After confirmation: copy original MEMORY.md to ARCHIVE/YYYY-MM.raw.md
