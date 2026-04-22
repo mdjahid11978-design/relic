@@ -10,7 +10,7 @@
 
 ## Boot Sequence
 
-**Step 0** Read `brain/.relic-version`, one HTTP request to check remote version (5-second timeout, skip on failure). This is the only network request.
+**Step 0** Read `brain/.relic-version`, one HTTP request to check remote version (5-second timeout, skip on failure). This is the only network request. If versions differ, remind user to update and suggest checking the anchor template for changes (see protocol Section 9).
 
 **Step 1** Check SESSIONS/, backfill any unrecorded conversations. Conversations are raw ore — lost = gone forever.
 
@@ -22,11 +22,23 @@
 
 **Step 5** Sync new memories from Relic to your own memory, tag with `[fromRelic/originalAgentName]`
 
+**Step 5.5** Seven-File Alignment Check
+
+Quickly compare all files. Sync any differences found. If sync fails, report to user.
+
+| File | Alignment Method | On Difference |
+|------|-----------------|---------------|
+| SOUL.md | Compare core fields (name, mission, user address) | Conflict → report user, no auto-overwrite; new content → bidirectional append |
+| USER.md | Same as above | Same as above |
+| MEMORY.md | Entry count comparison (handled in Step 5) | Mismatch → compare last 5 entries, bidirectional supplement |
+| SKILLS/ | List folder names, diff | Missing → bidirectional supplement |
+| PROJECTS/ | Same as above | Same as above |
+| SESSIONS/ | Compare latest file date | Missing → supplement |
+| ARCHIVE/ | Skip | No alignment needed |
+
 **Step 6** Update MEMORY.md header: update "Last consolidated" to current date + check entry count matches actual list items (lines starting with `- `)
 
-**Step 7** SKILLS/ and PROJECTS/ bidirectional sync
-
-**Step 8** Normal operation
+**Step 7** Normal operation
 
 ## Memory Append Format
 

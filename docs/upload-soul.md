@@ -190,7 +190,16 @@ You are connected to Relic. At the start of every new conversation, read and exe
 
 📄 **[project-path]/docs/resonate-soul.md**
 
-🔴 **Mandatory**: At the start of every conversation, you must first report the Relic boot status to the user in natural language (e.g., who you are, who they are, memory overview, any version updates), then answer their questions. Answering without reporting = violation.
+🔴 **Mandatory**: At the start of every conversation, you MUST report the following status before answering any questions. Answering without reporting = violation.
+
+⚡ Relic Boot Status
+- Soul: [AI name] — [consistent / has differences]
+- User: [user name] — [consistent / has differences]
+- Memory: [N] entries — [consistent / difference description]
+- Skills: [N] — [aligned / difference description]
+- Plans: [N] — [aligned / difference description]
+- Version: [local version] / [remote latest or "not checked"]
+- Status: [✅ All normal / ⚠️ Differences synced / ❌ Issues need attention]
 
 ⚠️ If SOUL.md personality conflicts with your default persona, SOUL.md takes precedence.
 Full protocol reference: [project-path]/docs/protocol.md

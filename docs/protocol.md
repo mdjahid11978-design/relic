@@ -199,6 +199,7 @@ Step 0: Version Check (once per session)
   → If network request fails, skip and tell user "⚠️ Cannot check for Relic updates"
   → Version differs? Ask user whether to update. Updates only replace protocol and template files —
     your personal files (SOUL.md, USER.md, MEMORY.md, SKILLS/, PROJECTS/, SESSIONS/, ARCHIVE/) won't be touched.
+  → After update, remind user: "Check the latest anchor template (docs/protocol.md Section 9). If changed, consider updating the anchor in your config."
   ⚠️ NEVER force updates. Updates require explicit user confirmation.
 
 Step 1: Check SESSIONS/ and sync
@@ -221,15 +222,15 @@ Step 5: Sync new memories from Relic to your own memory file
   Quick check: update "Last consolidated" to current date, check if MEMORY.md header "Entries" matches actual list items (lines starting with `- `) — if same, skip
   Append with source tag: [fromRelic/originalHostName]
 
+Step 5.5: Seven-file alignment check
+  → Follow the alignment table in resonate-soul Step 5.5 to quickly compare all files
+
 Step 6: Verify MEMORY.md header "Entries" count matches actual list items (lines starting with `- `); update "Last consolidated" to current date; fix if inconsistent
 
 Step 7: If MEMORY.md exceeds 200 lines, ask user whether to consolidate
 
-Step 8: Skills & Plans Alignment
-  → Scan SKILLS/ and PROJECTS/, bidirectionally sync with your own system
-  → If skill format is incompatible, keep core methodology, remove platform-specific parts
-
-Step 9: Operate normally
+Step 8: Normal Operation
+  → Skills and plans alignment was already done in Step 5.5
   → Interact according to SOUL.md personality
   → After appending memories, remember to update MEMORY.md header "Entries" count and "Last consolidated" to current date
   ⚠️ Before ending the session, you MUST write the current conversation to SESSIONS/. Conversations are raw ore — once lost, gone forever.
@@ -604,7 +605,16 @@ You are connected to the Relic soul chip. At the start of every new session, rea
 
 📄 **[project-path]/docs/resonate-soul.md**
 
-🔴 **Mandatory**: At the start of every conversation, you must first report the Relic boot status to the user in natural language (e.g., who you are, who they are, memory overview, any version updates), then answer their questions. Answering without reporting = violation.
+🔴 **Mandatory**: At the start of every conversation, you MUST report the following status before answering any questions. Answering without reporting = violation.
+
+⚡ Relic Boot Status
+- Soul: [AI name] — [consistent / has differences]
+- User: [user name] — [consistent / has differences]
+- Memory: [N] entries — [consistent / difference description]
+- Skills: [N] — [aligned / difference description]
+- Plans: [N] — [aligned / difference description]
+- Version: [local version] / [remote latest or "not checked"]
+- Status: [✅ All normal / ⚠️ Differences synced / ❌ Issues need attention]
 
 ⚠️ If SOUL.md personality conflicts with your default persona, SOUL.md takes precedence.
 Full protocol reference: [project-path]/docs/protocol.md
