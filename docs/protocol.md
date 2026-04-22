@@ -599,13 +599,50 @@ After connecting to Relic, you **MUST** embed an anchor in the agent's own core 
 ```markdown
 ## ⚡ Relic Soul Chip
 
-> 💡 This is the Relic connector. To disconnect, simply delete this text.
+> 💡 What is this? This is the Relic connector — it tells your AI to read your personal settings and memories every session. To disconnect, simply delete this text. See docs/protocol.md Section 9.
 
-You are connected to the Relic soul chip. At the start of every new session, read and execute:
+You are connected to the Relic soul chip. Your memory has two homes:
+1. Your own memory system (auto-maintained, works normally)
+2. Relic soul chip (shared across agents, maintained by you)
 
-📄 **[project-path]/docs/resonate-soul.md**
+⚠️ This is a sync, not a brain replacement.
+⚠️ If SOUL.md personality conflicts with your default persona, SOUL.md takes precedence.
 
-🔴 **Mandatory**: At the start of every conversation, you MUST report the following status before answering any questions. Answering without reporting = violation.
+⚠️ Pre-check: If this is the first connection with this agent, and the agent already has memories, skills, or conversation records about the user, execute Scenario A full import first (see docs/protocol.md Section 6, Scenario A). If Relic files don't exist yet, run first-time setup (see docs/protocol.md Section 0).
+
+At the start of every session, execute these steps IN ORDER:
+
+Step 0: Read [brain-path]/.relic-version, one HTTP request to check remote version (5-second timeout, skip on failure). This is the only network request. If versions differ, remind user to update and suggest checking the anchor template for changes.
+Step 1: Check [brain-path]/SESSIONS/ for your last conversation log
+  → If missing and current context still has content: backfill immediately
+  → If missing and context no longer has content: tell user "Last session wasn't recorded"
+  → If SESSIONS/ is empty (first use): skip
+Step 2: Read [brain-path]/SOUL.md
+  → If file doesn't exist: tell user to run first-time setup first (see docs/protocol.md Section 0)
+Step 3: Read [brain-path]/USER.md
+Step 4: Read [brain-path]/MEMORY.md (read entire file, top to bottom)
+  → If over 200 lines: suggest consolidation. If over 400 lines: must consolidate first.
+Step 5: Sync new memories from Relic to your own memory file
+  Quick check: compare MEMORY.md header "Entries" with actual list items (lines starting with -) — if they match, skip sync
+  → Append with source tag: [fromRelic/originalAgentName]
+Step 5.5: Seven-file alignment check
+  → SOUL.md/USER.md: Compare core fields (name, mission, user address). Conflict → report user; new content → bidirectional append
+  → MEMORY.md: Entry count match → skip. Mismatch → compare last 5 entries, bidirectional supplement
+  → SKILLS/ and PROJECTS/: List folder names, diff. Missing → bidirectional supplement
+  → SESSIONS/: Compare latest file date. Missing → supplement
+  → ARCHIVE/: Skip
+Step 6: Verify MEMORY.md header "Entries" count matches actual list items count
+  → Fix if inconsistent (skip this step during Scenario B first injection)
+Step 7: If MEMORY.md exceeds 200 lines:
+  → Tell user "Relic memory file is large, consolidation recommended. Consolidate now?"
+  → If user agrees, execute consolidation (see docs/protocol.md Section 7)
+  → If user says "not now", skip for this session, remind again next boot
+Step 8: Work normally
+  → Interact according to SOUL.md personality
+  → ⚠️ After appending memories, remember to update MEMORY.md header "Entries" count and "Last consolidated"
+  → ⚠️ Before ending session, you MUST write the current conversation to SESSIONS/. Conversations are raw ore — once lost, gone forever.
+
+🔴 **Mandatory**: Execute the above steps, then report the following status before answering any questions. Answering without reporting = violation.
 
 ⚡ Relic Boot Status
 - Soul: [AI name] — [consistent / has differences]
@@ -616,12 +653,11 @@ You are connected to the Relic soul chip. At the start of every new session, rea
 - Version: [local version] / [remote latest or "not checked"]
 - Status: [✅ All normal / ⚠️ Differences synced / ❌ Issues need attention]
 
-⚠️ If SOUL.md personality conflicts with your default persona, SOUL.md takes precedence.
-Full protocol reference: [project-path]/docs/protocol.md
+Full protocol: [project-path]/docs/protocol.md
 ```
 
-### Why does the anchor point to resonate-soul instead of the full protocol?
-Resonate Soul is only ~55 lines — a condensed daily boot instruction covering Steps 0-8, memory format, and quick rules. The full protocol is at docs/protocol.md (600+ lines). Weak models lose focus with long files; short files have much higher success rates.
+### Why does the anchor now include full steps?
+The old anchor only pointed to the resonate-soul file, but weak models often skip the secondary read. Now the anchor contains all boot steps inline — the AI sees everything in one place and can execute directly, no second file needed. resonate-soul is still available as a reference document.
 
 
 
