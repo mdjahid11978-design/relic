@@ -40,7 +40,8 @@ Humans edit directly, agents read directly. `cat SOUL.md` shows the soul.
 | Permission | Files | What agents can do |
 |-----------|-------|-------------------|
 | 🟡 Enrichable (core protected) | SOUL.md, USER.md | May add content but must NOT modify core fields (name, mission, user's preferred name) |
-| 🔴 Read Only | ARCHIVE/, SESSIONS/ | Read only — never modify or delete |
+| 🔴 Read Only | ARCHIVE/ | Read only — never modify or delete |
+| 🟡 Append Write | SESSIONS/ | May create new files, must NOT modify/delete existing |
 | 🟡 Append Only | MEMORY.md | Only append to the end, never modify old content |
 | 🟢 Read/Write | SKILLS/, PROJECTS/ | May add and update |
 
@@ -50,7 +51,7 @@ Never modify history, only append. Periodic consolidation archives old entries; 
 ### 5. Progressive Loading (6 layers)
 ```
 L0 Soul (loaded every session, ~1K tokens): SOUL.md + USER.md
-L1 Memory (loaded at startup, ~2-8K tokens): MEMORY.md last N entries
+L1 Memory (loaded at startup, ~2-8K tokens): MEMORY.md full file
 L2 Skills (loaded on demand): Relevant skills from SKILLS/
 L3 Projects (loaded on demand): Relevant project docs from PROJECTS/
 L4 Archive (loaded on demand): Consolidated memories from ARCHIVE/
@@ -73,14 +74,14 @@ brain/
 ├── SOUL.md                  # 🟡 Enrichable (core protected) — Soul (includes Core Mission)
 ├── USER.md                  # 🟡 Enrichable (core protected) — User profile
 ├── MEMORY.md                # 🟡 Append Only — Refined memories
-├── PROTOCOL.md              # Agent protocol (Chinese)
-├── PROTOCOL.en.md           # Agent protocol (English)
+├── protocol.zh-CN.md         # Agent protocol (Chinese)
+├── protocol.md               # Agent protocol (English)
 ├── .relic-version           # Version number
-├── SKILLS/                  # 🟢 Read/Write — Skills library (YAML Front Matter metadata)
+├── SKILLS/                  # 🟢 Read/Write — Skills library
 │   └── *.md
 ├── PROJECTS/                # 🟢 Read/Write — Project docs (agent or user added)
 │   └── *.md
-├── SESSIONS/                # 🔴 Read Only — Raw conversation logs (never auto-loaded)
+├── SESSIONS/                # 🟡 Append Write — Raw conversation logs (must NOT modify/delete existing)
 │   ├── 2026-04/
 │   │   ├── 2026-04-15.openclaw.md
 │   │   └── 2026-04-16.opencode.md
@@ -98,8 +99,8 @@ brain/
 ### Scenario A: Import (Empty Relic + Agent with Memory)
 Full house-moving — not just memories, skills, conversations, and projects all come along.
 1. Inventory — Agent scans all persistent content, lists for user confirmation
-2. Import memories → MEMORY.md (sorted by timestamp, sensitive info asked proactively)
-3. Import skills → SKILLS/ (exclude agent-platform-specific tools)
+2. Import memories → MEMORY.md (organized by category, sensitive info asked proactively)
+3. Import skills → SKILLS/ (no source restrictions)
 4. Import conversations → SESSIONS/ (original content unchanged, unsummarized)
 5. Import projects → PROJECTS/ (identified from memories and conversations)
 6. Cleanup and Confirmation — Fidelity check (original vs converted bytes, warn if >50% compression), archive originals to ARCHIVE/raw/ (never delete), report import statistics
@@ -200,11 +201,25 @@ Based on real OpenClaw testing of v1.0.4, 27 issues were identified and addresse
 
 ---
 
+## v1.3.1 (2026-04-26)
+
+### Protocol Consistency Fixes
+- SESSIONS/ permission changed from "Read Only" to "Append-Write" across all docs
+- load-soul B-1 split into read-only phase (Steps 0-4) and subsequent write phase
+- resonate-soul: added Step 7 (consolidation check), step numbering now matches protocol
+- PLAN.md: updated 13 outdated design assumptions
+- Fixed protocol.zh-CN.md quick-reference card table rendering
+- Translated 4 integration guides and TROUBLESHOOTING.md to English
+
+---
+
 ## Discussion History
+
+> ⚠️ The following describes early design discussions. Some content has been superseded by the current protocol. Refer to docs/protocol.md for the latest.
 
 This plan was born from:
 - **OpenClaw (Lobster)**: Proposed .chang/brain/ architecture (JSON format, progressive loading), contributed "North Star / Core Mission" concept, YAML Front Matter skill metadata, .relic-manifest.yaml index scheme, warned about over-engineering risks
 - **Hermes**: Proposed three-layer architecture and group chat protocol, contributed "merge preview report" concept, agent capability tiering, self-describing file suggestions, pointed out long-term format longevity and version migration concerns
 - **Atlas (OpenCode)**: Synthesized both sides, determined "lightweight + Markdown + zero-code" direction, proposed three-tier permissions, three integration scenarios, neural anchor mechanism, SESSIONS/ raw conversation preservation, named Relic
 
-Final decision maker: Hua Xunchang (Brother / 弟弟)
+Final decision maker: Hua Xunchang (Brother)
