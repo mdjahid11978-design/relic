@@ -1,7 +1,7 @@
 ---
 name: relic-soul-chip
 description: "Relic Soul Chip — Persistent AI personality and cross-agent memory via pure Markdown. Switch hosts, keep the soul. Zero deps."
-version: "1.3.0"
+version: "1.3.1"
 author: LucioLiu
 license: GPL-3.0
 homepage: "https://github.com/LucioLiu/relic"
@@ -46,7 +46,8 @@ Give your AI agent a persistent personality and memory that survives sessions an
 
 - 🔴 NEVER delete or overwrite core fields in SOUL.md or USER.md
 - 🟡 ONLY APPEND to MEMORY.md
-- 🔴 NEVER delete SESSIONS/ or ARCHIVE/
+- 🔴 NEVER delete ARCHIVE/
+- 🟡 SESSIONS/: append new files only, never modify or delete existing ones
 - 🔴 NEVER access files outside ~/relic/brain/ (except optional anchor in agent config)
 - ⚠️ Always ask before recording sensitive info
 

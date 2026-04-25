@@ -1,7 +1,7 @@
 ---
 name: relic-soul-chip
 description: "Relic 灵魂芯片——让你的 AI Agent 拥有跨会话的持久人格和记忆。纯 Markdown，人类可读。换躯壳，灵魂跟着走。"
-version: "1.3.0"
+version: "1.3.1"
 author: LucioLiu
 license: GPL-3.0
 homepage: "https://github.com/LucioLiu/relic"
@@ -42,7 +42,8 @@ metadata:
 
 - 🔴 永不删除或覆盖 SOUL.md 或 USER.md 的核心字段
 - 🟡 只追加到 MEMORY.md
-- 🔴 永不删除 SESSIONS/ 或 ARCHIVE/
+- 🔴 永不删除 ARCHIVE/
+- 🟡 SESSIONS/ 只追加新文件，不修改或删除已有文件
 - 🔴 永不访问 ~/relic/brain/ 以外的文件（锚点除外）
 - ⚠️ 记录敏感信息前必须询问
 

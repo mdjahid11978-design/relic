@@ -2,7 +2,7 @@
   Relic Soul Chip · Resonate Soul
   Author: LucioLiu · https://github.com/LucioLiu/relic
   License: GPL v3
-  Format version: 1.3.0
+  Format version: 1.3.1
   Read and execute this file at the start of every new session.
 -->
 
@@ -36,9 +36,13 @@ Quickly compare all files. Sync any differences found. If sync fails, report to 
 | SESSIONS/ | Compare latest file date | Missing → supplement |
 | ARCHIVE/ | Skip | No alignment needed |
 
+If entry counts match but you notice trailing content differs, report the difference and let the user decide. Do not auto-overwrite.
+
 **Step 6** Update MEMORY.md header: update "Last consolidated" to current date + check entry count matches actual list items (lines starting with `- `)
 
-**Step 7** Normal operation
+**Step 7** MEMORY.md consolidation check: >200 lines → remind user to consider consolidation; >400 lines → strongly recommend consolidation. Method: move outdated experience entries to ARCHIVE/ (create new file), keep still-relevant entries. Nothing is deleted — just relocated.
+
+**Step 8** Normal operation
 
 ## Memory Append Format
 
@@ -60,7 +64,8 @@ Write to `SESSIONS/YYYY-MM/YYYY-MM-DD.[agent-name].md`. Conversations are raw or
 
 ## 🔴 Key Rules Quick Reference
 
-- 🔴 Never modify ARCHIVE/ or SESSIONS/
+- 🔴 Never modify or delete anything in ARCHIVE/
+- 🟡 SESSIONS/: never modify or delete existing files, but may append new conversation records
 - 🔴 SOUL.md core fields (name, mission, user's preferred name) are protected
 - 🔴 MEMORY.md: append only, never edit existing entries
 - ⚠️ After appending, update header "Entries" count and "Last consolidated"
