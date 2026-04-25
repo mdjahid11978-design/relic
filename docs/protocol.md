@@ -4,7 +4,7 @@
   Relic Soul Chip
   Author: LucioLiu · https://github.com/LucioLiu/relic
   License: GPL v3
-  Format version: 1.3.0
+  Format version: 1.3.1
   Backup before editing.
 -->
 
@@ -150,16 +150,16 @@ Core rule: grow-only (G-Set)
 | `MEMORY.md` | 🟡 Append Only | Long-term memory — category-based structured memory (preferences, decisions, experiences, etc.), each entry tagged with host name and importance level |
 | `SKILLS/*.md` | 🟢 Read/Write | Skills — one folder per skill, any source (user-created, platform tools, etc.) |
 | `PROJECTS/*.md` | 🟢 Read/Write | Plan documents — ongoing or completed plans |
-| `SESSIONS/` | 🔴 Read Only* | Raw conversation logs — don't auto-read contents on startup, but must create directory and write periodically |
+| `SESSIONS/` | 🟡 Append-Write | Raw conversation logs — may create new files, must not modify or delete existing files |
 | `ARCHIVE/` | 🔴 Read Only | Consolidated archives — never deleted |
 | `INBOX/` | 🟢 Read/Write | Import buffer |
 
-* SESSIONS can be temporarily written to during Scenario A import; reverts to read-only after import.
+* SESSIONS has append-write permission: may create new conversation records, but must not modify or delete existing files.
 
 ### Permission Explained
 - 🟡 Enrichable (core protected): May add new habits, preferences, etc., but **must NOT delete or overwrite core fields** (name, core mission, user's preferred name). No need to ask user after modifying (background self-evolution).
-- 🟡 Append Only: Only append to the end, never modify existing content.
-- 🔴 Read Only: Never modify or delete.
+- 🟡 Append Only: Only append to the end, never modify existing content (MEMORY.md); or may only create new files, never modify or delete existing ones (SESSIONS/).
+- 🔴 Read Only: Never modify or delete (ARCHIVE/).
 - 🟢 Read/Write: May add and update.
 
 ### SESSIONS vs ARCHIVE Distinction
@@ -245,7 +245,8 @@ Extra Rules:
 ## 3. Permission Rules (Iron Law)
 
 ### 🔴 Absolutely Forbidden
-- Never modify or delete anything in ARCHIVE/ or SESSIONS/
+- Never modify or delete anything in ARCHIVE/
+- Never modify or delete existing files in SESSIONS/, but may append new conversation records
 - Never modify any file during first connection
 - Never delete or overwrite core fields in SOUL.md / USER.md (name, core mission, user's preferred name)
 
