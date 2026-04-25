@@ -1,184 +1,183 @@
-# 🔧 故障排查 / Troubleshooting
+# 🔧 Troubleshooting
 
-> 躯壳或用户遇到问题时，先看这里。
 > When something goes wrong, check here first.
 
 ---
 
-## 躯壳不读 Relic / Agent doesn't read Relic
+## Agent doesn't read Relic
 
-**症状**：躯壳不记得你的 AI 名字、不记得你的偏好，好像从来没读过 SOUL.md。
+**Symptom**: The agent doesn't remember your AI's name, doesn't remember your preferences, as if it never read SOUL.md.
 
-**原因**：躯壳的核心配置里没有锚点（或锚点被清除了）。
+**Cause**: There's no anchor in the agent's core config (or the anchor was cleared).
 
-**解决**：
-1. 检查躯壳的核心配置文件（OpenClaw 看 AGENTS.md，Claude Code 看 CLAUDE.md 等）
-2. 确认里面有 ⚡ Relic 灵魂芯片的锚点文字
-3. 如果没有，参考 `examples/integrations/` 里对应躯壳的接入指南重新植入
-4. 植入后重新启动躯壳
+**Solution**:
+1. Check the agent's core config file (AGENTS.md for OpenClaw, CLAUDE.md for Claude Code, etc.)
+2. Confirm the ⚡ Relic Soul Chip anchor text is present
+3. If not, refer to the integration guide for your agent in `examples/integrations/` and re-plant the anchor
+4. Restart the agent after planting
 
-**预防**：躯壳升级/重装后可能会清空配置。升级后记得检查锚点还在不在。
-
----
-
-## SOUL.md 被躯壳改了 / SOUL.md was modified by agent
-
-**症状**：SOUL.md 的内容和之前不一样了。
-
-**解决**：
-1. 立即停止躯壳的当前操作
-2. 如果项目在 git 管理下：`git checkout SOUL.md` 恢复
-3. 如果没有 git：检查 ARCHIVE/ 里有没有备份
-4. 如果都没有：手动修正 SOUL.md
-5. 修正后检查躯壳的配置，确认锚点文字还在（锚点里有权限规则提醒）
+**Prevention**: Agent upgrades/reinstalls may clear config. Check anchors after upgrades.
 
 ---
 
-## 记忆文件丢失 / Memory file missing
+## SOUL.md was modified by agent
 
-**症状**：MEMORY.md 不见了或变空了。
+**Symptom**: SOUL.md content has changed from what it was before.
 
-**解决**：
-1. 检查 ARCHIVE/ 目录——可能上次整理时被移到了那里
-2. 查看 ARCHIVE/index.md 找到最新的归档文件
-3. 如果找到了：把归档内容复制回 MEMORY.md
-4. 如果 ARCHIVE/ 里也没有：检查 git 历史或文件系统回收站
-
----
-
-## 对话记录没被保存 / Sessions not recorded
-
-**症状**：SESSIONS/ 里没有上次的对话记录。
-
-**解决**：
-1. 这需要躯壳主动写入。如果躯壳忘了，对话结束后跟它说：
-   "请把今天的对话记录到 SESSIONS/2026-04/2026-04-16.[躯壳名].md"
-2. 躯壳会追加完整对话到指定文件
-
-**预防**：每天结束前养成提醒躯壳的习惯，或等 Phase 2 的自动化工具。
+**Solution**:
+1. Immediately stop the agent's current operation
+2. If the project is under git: `git checkout SOUL.md` to restore
+3. If no git: check ARCHIVE/ for backups
+4. If neither: manually fix SOUL.md
+5. After fixing, check the agent's config to confirm the anchor text is still present (anchors contain permission rule reminders)
 
 ---
 
-## 记忆太多躯壳记不住 / Too many memories, agent forgets
+## Memory file missing
 
-**症状**：躯壳说"我不记得你说过这个"，但你确实之前告诉过它。
+**Symptom**: MEMORY.md is gone or empty.
 
-**原因**：MEMORY.md 太长（超过 200-400 行），虽然躯壳协议要求读全文，但信息量过大时关键记忆可能被淹没，或者躯壳上下文窗口不足以容纳全文。
-
-**解决**：
-1. 告诉躯壳："请在 MEMORY.md 全文里搜索 [关键词]"
-2. 如果 MEMORY.md 太大（超过 200 行），建议整理——整理时优先保留重要度高的条目，精简或归档重要度低的条目
-3. 整理方法参考 docs/protocol.zh-CN.md 第七节
-
----
-
-## 换了新 Agent 怎么接入 / Switching to a new agent
-
-**步骤**：
-1. 查看新 Agent 的接入指南（`examples/integrations/` 目录）
-2. 在新 Agent 的核心配置里植入锚点
-3. 启动新 Agent，它会自动读取 Relic
-4. MEMORY.md 里之前其他躯壳写的记忆，新躯壳同样会参考
+**Solution**:
+1. Check the ARCHIVE/ directory — it may have been moved there during a previous consolidation
+2. Look at ARCHIVE/index.md to find the latest archive file
+3. If found: copy the archive content back to MEMORY.md
+4. If not in ARCHIVE/ either: check git history or filesystem recycle bin
 
 ---
 
-## 如何断开 / How to Disconnect
+## Sessions not recorded
 
-**想停用 Relic？**
+**Symptom**: No session log from last time in SESSIONS/.
 
-1. 删除躯壳核心配置里的锚点文字（AGENTS.md / CLAUDE.md / WORK_RULES.md 里的 `⚡ Relic 灵魂芯片` 区块）
-2. 躯壳下次启动就不会再读 Relic 了
-3. Relic 文件不会被自动删除——SOUL.md、MEMORY.md 等都还在
-4. 想彻底清理：删除整个 `brain/` 目录即可（建议先备份）
+**Solution**:
+1. This requires the agent to actively write. If the agent forgot, tell it after the conversation:
+   "Please record today's conversation to SESSIONS/2026-04/2026-04-16.[agent-name].md"
+2. The agent will append the full conversation to the specified file
 
-**临时停用**：只删锚点就行，文件保留着，以后想恢复再植入锚点。
+**Prevention**: Get in the habit of reminding the agent before ending each day, or wait for Phase 2 automation tools.
 
 ---
 
-## 只有模板文件没有正式文件 / Only templates, no active files
+## Too many memories, agent forgets
 
-**问题**：目录里只有 `SOUL.template.md`，没有 `SOUL.md`。
+**Symptom**: The agent says "I don't remember you saying that" but you definitely told it before.
 
-**解决**：
+**Cause**: MEMORY.md is too long (over 200-400 lines). Although the protocol requires the agent to read the full file, too much information can bury key memories, or the agent's context window may not fit the entire file.
+
+**Solution**:
+1. Tell the agent: "Please search MEMORY.md for [keyword]"
+2. If MEMORY.md is too large (over 200 lines), suggest consolidation — prioritize high-importance entries, simplify or archive low-importance ones
+3. See docs/protocol.md Section 7 for consolidation methods
+
+---
+
+## Switching to a new agent
+
+**Steps**:
+1. Check the new agent's integration guide (in `examples/integrations/`)
+2. Plant the anchor in the new agent's core config
+3. Start the new agent — it will automatically read Relic
+4. Memories written by other agents in MEMORY.md will also be referenced by the new agent
+
+---
+
+## How to Disconnect
+
+**Want to stop using Relic?**
+
+1. Delete the anchor text from the agent's core config (the `⚡ Relic Soul Chip` block in AGENTS.md / CLAUDE.md / WORK_RULES.md)
+2. The agent won't read Relic on next startup
+3. Relic files won't be auto-deleted — SOUL.md, MEMORY.md, etc. all remain
+4. To fully clean up: delete the entire `brain/` directory (back up first)
+
+**Temporary disable**: Just delete the anchor. Files stay, re-plant anchor to resume.
+
+---
+
+## Only templates, no active files
+
+**Problem**: Directory only has `SOUL.template.md`, no `SOUL.md`.
+
+**Solution**:
 ```
-复制 SOUL.template.md → 改名为 SOUL.md
-复制 USER.template.md → 改名为 USER.md
-复制 MEMORY.template.md → 改名为 MEMORY.md
+Copy SOUL.template.md → rename to SOUL.md
+Copy USER.template.md → rename to USER.md
+Copy MEMORY.template.md → rename to MEMORY.md
 ```
 
-用文件管理器或命令行都行。躯壳读的是 SOUL.md（不带 template）。
+Use a file manager or command line. The agent reads SOUL.md (without the template suffix).
 
 ---
 
-## 想编辑 SOUL.md 或 USER.md 但权限是只读 / Want to edit read-only files
+## Want to edit read-only files
 
-**问题**：设置了 `chmod 444 SOUL.md USER.md` 后，自己编辑也改不了。
+**Problem**: After setting `chmod 444 SOUL.md USER.md`, you can't edit them either.
 
-**解决**：
+**Solution**:
 ```bash
-chmod 644 SOUL.md USER.md    # 开启写权限
-# 用编辑器修改...
-chmod 444 SOUL.md USER.md    # 改回只读
+chmod 644 SOUL.md USER.md    # Enable write permission
+# Edit with your editor...
+chmod 444 SOUL.md USER.md    # Set back to read-only
 ```
 
-> 💡 v0.2.0 起：躯壳可以丰富 SOUL.md 和 USER.md 的内容（新增习惯、偏好等），只有核心字段（名字、使命、用户称呼）受保护。如果躯壳需要改内容，不需要解除权限——它会在你允许的范围内自动丰富。
+> 💡 Since v0.2.0: Agents can enrich SOUL.md and USER.md content (add habits, preferences, etc.), but core fields (name, mission, user address) are protected. If the agent needs to modify content, no need to unlock — it will enrich within allowed scope.
 
-躯壳不会自动执行 `chmod`，所以需要用户手动操作。如果躯壳需要修改非核心内容，它会自行追加，不需要解除文件权限。
-
----
-
-## 路径里怎么写 / What path to use
-
-锚点里的路径取决于你把 Relic 放在哪里：
-
-| 系统 System | 示例路径 Example path |
-|------------|---------------------|
-| Linux | `/home/你的用户名/relic/brain` |
-| macOS | `/Users/你的用户名/relic/brain` |
-| Windows (WSL) | `/home/你的用户名/relic/brain` |
-| Windows (原生) | `C:\Users\你的用户名\relic\brain` |
-
-把路径替换到锚点文字里的 `[brain路径]`。
+Agents won't auto-execute `chmod`, so manual user action is needed. If the agent needs to modify non-core content, it will append on its own without needing file permission changes.
 
 ---
 
-## 多设备同步 / Multi-device Sync
+## What path to use
 
-**问题**：我在两台电脑上用 Relic，怎么同步？
+The path in the anchor depends on where you put Relic:
 
-**方案**：
-1. **推荐：Git 同步** / Recommended: Git sync
-   - 把 Relic 目录放在 Git 仓库里
-   - 每次结束使用后 `git add . && git commit -m "sync" && git push`
-   - 在另一台机器上 `git pull`
-   - ⚠️ 注意：确保 `.gitignore` 排除敏感信息（SOUL.md、USER.md 可能包含私密内容）
+| System | Example Path |
+|--------|-------------|
+| Linux | `/home/your-username/relic/brain` |
+| macOS | `/Users/your-username/relic/brain` |
+| Windows (WSL) | `/home/your-username/relic/brain` |
+| Windows (native) | `C:\Users\your-username\relic\brain` |
 
-2. **云盘同步** / Cloud drive sync
-   - 把 Relic 目录放在 OneDrive/Dropbox/坚果云等同步盘里
-   - 注意：不要两台机器同时写入 MEMORY.md（append-only 可以降低风险）
-
-3. **手动拷贝** / Manual copy
-   - 用 U 盘或网络共享拷贝整个 brain/ 目录
-
-**注意**：MEMORY.md 是 append-only，多设备追加通常不会冲突。
-但如果同时修改了 SKILLS/ 或 PROJECTS/，需要手动合并。
+Replace the path in the anchor text where `[brain-path]` is.
 
 ---
 
-## 模型上下文太小 / Model Context Too Small
+## Multi-device Sync
 
-**问题**：PROTOCOL 默认 200/400 行整理阈值，但我的模型只有 4K 上下文。
+**Problem**: I use Relic on two computers. How to sync?
 
-**方案**：
-如果模型上下文较小（4K-8K），把阈值调低：
-- 整理提醒阈值：200 行 → **50 行**
-- 强制整理阈值：400 行 → **100 行**
-- 在锚点里直接把数字改掉就行，PROTOCOL 的数字是默认值，可以在锚点中自定义
+**Solutions**:
+1. **Recommended: Git sync**
+   - Put the Relic directory in a Git repository
+   - After each use: `git add . && git commit -m "sync" && git push`
+   - On the other machine: `git pull`
+   - ⚠️ Note: Ensure `.gitignore` excludes sensitive info (SOUL.md, USER.md may contain private content)
+
+2. **Cloud drive sync**
+   - Put the Relic directory in OneDrive/Dropbox/etc.
+   - Note: Don't write to MEMORY.md simultaneously from two machines (append-only reduces risk)
+
+3. **Manual copy**
+   - Use a USB drive or network share to copy the entire brain/ directory
+
+**Note**: MEMORY.md is append-only, so multi-device appends rarely conflict.
+But if you simultaneously modify SKILLS/ or PROJECTS/, you'll need to merge manually.
 
 ---
 
-## 找不到答案 / Can't find the answer
+## Model Context Too Small
 
-1. 重新阅读 `docs/protocol.md`——大部分问题在协议里都有说明
-2. 查看 `examples/example-brain/`——看示例是怎么填的
-3. 在 GitHub 上提 Issue
+**Problem**: PROTOCOL defaults to 200/400 line consolidation thresholds, but my model only has 4K context.
+
+**Solution**:
+If your model has a small context (4K-8K), lower the thresholds:
+- Consolidation reminder threshold: 200 lines → **50 lines**
+- Forced consolidation threshold: 400 lines → **100 lines**
+- Just change the numbers in the anchor — PROTOCOL numbers are defaults, customizable in the anchor
+
+---
+
+## Can't find the answer
+
+1. Re-read `docs/protocol.md` — most questions are answered in the protocol
+2. Check `examples/example-brain/` — see how the examples are filled in
+3. Open an Issue on GitHub
