@@ -8,6 +8,8 @@
 > Your host has memories, but Relic is empty. Follow these steps to upload your soul, memories, and skills into Relic.
 >
 > ⚠️ Relic works best with 32K+ context, high-quality models. Models with very small context or low quality cannot follow this process correctly.
+>
+> 📖 This is the detailed standalone guide for Scenario A. The canonical protocol definition is in `docs/protocol.md` (Scenario A section, 10 steps). Step numbering differs between this guide and the protocol — follow **this guide** when executing Scenario A.
 
 ---
 
