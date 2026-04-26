@@ -20,7 +20,7 @@ Choose a transfer strategy based on capacity:
 
 ## B-1. Execute Boot Sequence
 
-Read and execute the **read-only steps** in `docs/resonate-soul.md` (Steps 0-4: version check, SESSIONS check, read SOUL, read USER, read MEMORY). Steps 5-7 involve write operations and are deferred to B-4.
+Execute the boot summary below (read-only version); **do NOT execute** `docs/resonate-soul.md` Step 1's backfill action directly. Steps 5-7 involve write operations and are deferred to B-4.
 
 🔴 **Do NOT modify any Relic files during initialization.** Read-only for now.
 

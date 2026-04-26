@@ -540,9 +540,8 @@ B-3. Sync Relic content to your own systems
   Memories/skills/plans: check each item, sync as much as you can
   For content that doesn't fit, create local backup file
 
-B-4. Deferred Writes (see load-soul document)
-  Do not modify any Relic files during first injection
-  Content requiring writes is staged until user confirms
+B-4. Deferred Writes (execute per load-soul B-4)
+  Execute the write steps skipped in B-1 (Steps 1/5/5.5/6/7)
 
 B-5. Plant Anchor
   Embed the Relic anchor in your core config file (see Section 9 template)
