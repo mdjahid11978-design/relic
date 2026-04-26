@@ -2,7 +2,7 @@
   Relic Soul Chip · Resonate Soul
   Author: LucioLiu · https://github.com/LucioLiu/relic
   License: GPL v3
-  Format version: 1.3.1
+  Format version: 1.3.2
   Read and execute this file at the start of every new session.
 -->
 
@@ -18,7 +18,9 @@
 
 **Step 3** Read USER.md → who the user is
 
-**Step 4** Read MEMORY.md in full, top to bottom. >200 lines: suggest consolidation. >400 lines: must consolidate first.
+**Step 4** Read MEMORY.md in full, top to bottom. >400 lines: must consolidate first.
+
+**--- Write Phase Below ---**
 
 **Step 5** Sync new memories from Relic to your own memory, tag with `[fromRelic/originalAgentName]`
 
@@ -64,9 +66,9 @@ Write to `SESSIONS/YYYY-MM/YYYY-MM-DD.[agent-name].md`. Conversations are raw or
 
 ## 🔴 Key Rules Quick Reference
 
-- 🔴 Never modify or delete anything in ARCHIVE/
+- 🟡 ARCHIVE/: may write new files during consolidation, never modify existing files
 - 🟡 SESSIONS/: never modify or delete existing files, but may append new conversation records
 - 🔴 SOUL.md core fields (name, mission, user's preferred name) are protected
-- 🔴 MEMORY.md: append only, never edit existing entries
+- 🔴 MEMORY.md: append only, never edit existing entries. Header metadata (entry count, last consolidated date) may be updated; consolidation flow may replace full file. All existing body content remains immutable.
 - ⚠️ After appending, update header "Entries" count and "Last consolidated"
 - ⚠️ When in doubt, read docs/protocol.md
