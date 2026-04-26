@@ -54,13 +54,16 @@
 > Registry of connected agents. Append an entry when each agent connects. Notes can be added later.
 
 *格式 / Format:*
-<!-- 
+
+*Agent Registry template（复制后填入）/ Agent Registry template (copy and fill in):*
+
+```markdown
 ### [躯壳名] / [Agent Name]
 - 平台 / Platform: [OpenClaw / Claude Code / ...]
 - 首次接入 / First Connected: YYYY-MM-DD
 - 状态 / Status: 活跃 / 休眠 / 已退役
 - 备注 / Notes: [躯壳特点、使用场景等，可后续补充]
--->
+```
 
 ## 自由区域 / Free Zone
 
