@@ -40,7 +40,7 @@ Humans edit directly, agents read directly. `cat SOUL.md` shows the soul.
 | Permission | Files | What agents can do |
 |-----------|-------|-------------------|
 | 🟡 Enrichable (core protected) | SOUL.md, USER.md | May add content but must NOT modify core fields (name, mission, user's preferred name) |
-| 🔴 Read Only | ARCHIVE/ | Read only — never modify or delete |
+| 🟡 Archive Write | ARCHIVE/ | Written only via consolidation (never delete existing) |
 | 🟡 Append Write | SESSIONS/ | May create new files, must NOT modify/delete existing |
 | 🟡 Append Only | MEMORY.md | Only append to the end, never modify old content |
 | 🟢 Read/Write | SKILLS/, PROJECTS/ | May add and update |
@@ -86,7 +86,7 @@ brain/
 │   │   ├── 2026-04-15.openclaw.md
 │   │   └── 2026-04-16.opencode.md
 │   └── ...
-├── ARCHIVE/                 # 🔴 Read Only — Consolidated archives (never deleted)
+├── ARCHIVE/                 # 🟡 Archive Write — Consolidated archives, written only via consolidation (never deleted)
 │   ├── 2026-04.raw.md
 │   └── index.md
 └── INBOX/                   # 🟢 Read/Write — Import buffer
@@ -110,7 +110,9 @@ B-0. Self-check: Assess agent storage capacity, choose transport strategy
 B-1. Execute boot sequence (read SOUL/USER/MEMORY, sync new memories to self)
 B-2. Soul injection: Write SOUL.md into agent core config (priority: core identity > behavioral norms > detailed settings)
 B-3. Sync Relic content (memories/skills/projects, check each item)
-B-4. Verification and Report: Coverage check + full sync report to user
+B-4. Deferred Writes: Do not modify any Relic files during first injection, stage writes until user confirms
+B-5. Plant Anchor: Embed Relic anchor in agent core config, ensure auto-load on next session
+B-6. Verification and Report: Coverage check + full sync report to user
 
 Empty Relic + Empty Agent: Ask user —
   [A] Start fresh: describe yourself, agent fills SOUL.md
@@ -210,6 +212,21 @@ Based on real OpenClaw testing of v1.0.4, 27 issues were identified and addresse
 - PLAN.md: updated 13 outdated design assumptions
 - Fixed protocol.zh-CN.md quick-reference card table rendering
 - Translated 4 integration guides and TROUBLESHOOTING.md to English
+
+---
+
+## v1.3.2
+
+- ARCHIVE/ changed from Read-Only to Archive-Write semantics (🟡 Archive Write)
+- MEMORY.md append-only rule now includes header metadata exception
+- Fixed anchor template Step 4/5 overlap (Step 4 keeps >400 safety gate, Step 5 deduplicates, Step 7 handles >200 suggestions)
+- Added B-4 Deferred Writes step, B-step renumbered (B-4→B-5, B-5→B-6)
+- Scenario A: added SOUL/USER import steps + anchor planting step
+- Scenario C expanded to C-0 through C-5 complete workflow
+- Integration guides: unified anchor format (summary + pointer), added Step 0/5.5
+- Agent Registry changed from HTML comments to visible code blocks
+- resonate-soul: added read/write phase separator
+- SKILL.md write scope expanded to include SKILLS/, PROJECTS/, INBOX/
 
 ---
 
