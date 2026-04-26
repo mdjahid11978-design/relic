@@ -528,8 +528,9 @@ Step 10: Item-by-item Report (mandatory, no exceptions)
 B-0. Self-check: Assess your storage capabilities (no need to tell user)
   Choose sync strategy based on capacity: ample → full sync, limited → high-priority, minimal → index only
 
-B-1. Execute boot sequence (Section 2, steps 0-8)
-  Do not modify any Relic files during initialization
+B-1. Execute boot sequence (read-only steps 0-4 only, see load-soul for details)
+  🔴 Do not modify any Relic files during initialization
+  Steps 5-7 write operations are deferred to B-4
 
 B-2. Soul Injection
   Write SOUL.md content into your core config file.
