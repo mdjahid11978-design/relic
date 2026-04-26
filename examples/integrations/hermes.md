@@ -75,7 +75,7 @@ After conversations, remind Hermes to save session logs to SESSIONS/.
 
 ## Permission Reminders
 
-- SOUL.md and USER.md: Hermes can only read, not modify
+- SOUL.md and USER.md: core fields (name, mission, user address) are protected; non-core content may be enriched
 - MEMORY.md: Hermes can only append at the end
 - SKILLS/ and PROJECTS/: Hermes can read and write freely
 
