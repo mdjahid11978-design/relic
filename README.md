@@ -11,9 +11,11 @@
 ╚═══════════════════════════════════════════════╝
 ```
 
-**Relic gives your AI a persistent soul that works across all AI tools.** Personality, memories, skills, and project knowledge — all stored in plain text files. Works with OpenClaw, Claude Code, Hermes, Cursor, Aider, or any AI that can read files. No code, no installation, no dependencies.
+**Relic gives your AI a persistent soul that works across all AI tools.** Personality, memories, skills, and project knowledge — all stored in plain text files. Works with Hermes, Claude Code, Cursor, OpenClaw, Codex, or any AI that can read files. No code, no installation, no dependencies.
 
 > 💡 Inspired by the Relic biochip from *Cyberpunk 2077* — store a soul as a digital file, plug it into any host.
+
+> **Part of a bigger stack.** Relic carries *one* agent's soul across tools. Want a whole ready-to-run AI team, or to generate new agents? See [agent-modpack](https://github.com/LucioLiu/agent-modpack) (download-and-go team), [nomad](https://github.com/LucioLiu/nomad) (workspace), or [nuwa](https://github.com/LucioLiu/nuwa) (agent generator).
 
 ---
 
